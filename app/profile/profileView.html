@@ -1,0 +1,59 @@
+<header>
+    <div class="ui menu">
+        <div class="header item">
+            FAVOR
+        </div>
+        <a class="item" href="../home/home.view.html"><i class="fa fa-home"></i> Home</a>
+        <a class="item"><i class="fa fa-user"></i> Profile</a>
+        <a class="item"><i class="fa fa-comments-o"></i> Messages</a>
+        <div class="right menu">
+            <a class="item" href="../index.html"><i class="fa fa-sign-out"></i> Logout</a>
+        </div>
+
+    </div>
+</header>
+
+<div class="ui container">
+    <div class="profile" ng-controller="HomeController as homeCtrl">
+        <div class="user-profile">
+            <div class="image">
+                <img class="ui middle aligned small rounded image" ng-src="{{homeCtrl.users.img}}">
+            </div>
+
+            <div class="ui mini statistics">
+                <div class="statistic">
+                    <div class="value">
+                        22
+                    </div>
+                    <div class="label">
+                        Faves
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="value">
+                        31,200
+                    </div>
+                    <div class="label">
+                        Views
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="value">
+                        22
+                    </div>
+                    <div class="label">
+                        Members
+                    </div>
+                </div>
+            </div>
+
+            <div class="header">
+                <h2>{{homeCtrl.users.name}}</h2>
+            </div>
+
+            <div class="location">
+                <i class="fa fa-map-marker fa-lg"> {{homeCtrl.users.location}}</i>
+            </div>
+        </div>
+    </div>
+</div>

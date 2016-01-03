@@ -1,0 +1,53 @@
+<div id="page1" ng-controller="homeController as loginCtrl">
+    <div class="ui header" id="introHeader">
+        <h1 id="introPage1">need a <strong>FAVOUR</strong>.</h1>
+
+        <div class="ui big buttons">
+            <a href="register/register.view.html">
+                <button class="ui button">SIGN UP</button>
+            </a>
+            <div class="or"></div>
+            <button class="ui button" id="SignInBtn" ng-click="loginCtrl.login()">SIGN IN</button>
+        </div>
+
+    </div>
+</div>
+
+<div id="page2">
+    <div class="ui container">
+        <h1 class="intro-page2">How <strong>FAVOR</strong> Works</h1>
+        <div class="ui grid">
+            <div class="four column row">
+                <div class="column" id="about">
+                    <i class="fa fa-question-circle fa-5x" class="icon"></i>
+                    <h3>What is <strong>Favor</strong></h3>
+                    <p>The service could be anything!</p>
+                </div>
+                <div class="column">
+                    <i class="fa fa-hand-paper-o fa-5x" class="icon"></i>
+                    <h3>NEED A HAND?</h3>
+                    <p>Find someone that is available and is capable doing it.</p>
+                </div>
+                <div class="column">
+                    <i class="fa fa-users fa-5x" class="icon"></i>
+                    <h3>CONTACT</h3>
+                    <p>Contact the helper or the person in need to set an agreement. After the agreement  both parties can agree on a method of payment. </p>
+                </div>
+                <div class="column">
+                    <i class="fa fa-comment-o fa-5x" class="icon"></i>
+                    <h3>FEEDBACK MATTERS</h3>
+                    <p>Once the favor has been completed both parties can leave a review about how they liked/disliked the service.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="page3">
+    <h3 class="location header">let's do everyone a FAVOR</h3>
+
+    <div class="ui input">
+        <input class="prompt" type="text" placeholder="FIND YOUR CITY">
+    </div>
+</div>

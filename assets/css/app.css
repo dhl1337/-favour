@@ -1,0 +1,126 @@
+#page1 {
+    background: url("https://images.unsplash.com/photo-1417551047620-471daaad5a65?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=e778f279618432c687b18697b11a398f") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 700px;
+    margin-bottom: 50px;
+}
+#introHeader {
+    text-align: center;
+    padding-top: 250px;
+}
+#introPage1{
+    font-size: 100px;
+    color: white;
+}
+#page2 {
+    background-color: white;
+    height: 400px;
+}
+.icon {
+    color: orange;
+}
+.ui.button{
+    background-color: orange;
+    color: white;
+}
+.ui.button:hover{
+    background-color: orange;
+    color: white;
+}
+.ui.buttons .or:before {
+    color: orange;
+}
+.intro-page2 {
+    text-align: center;
+    margin-bottom: 75px;
+}
+strong {
+    color: orange;
+}
+.column {
+    text-align: center;
+}
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+#page3 {
+    background: url("https://images.unsplash.com/photo-1437590552276-2e17e82b7b48?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=bc08a323245690c2f5a02c06ac20a812") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 600px;
+    text-align: center;
+    padding-top: 100px;
+}
+.location.header {
+    color: white;
+    text-align: center;
+    padding-top: 100px;
+    font-size: 60px;
+}
+.view.cities {
+    color: white;
+}
+.field {
+    padding: 0 70px;
+}
+#loginForm {
+    margin: 55px 0 20px 0;
+    padding: 0 50px;
+}
+#loginHeader {
+    text-align: center;
+}
+#loginBtn {
+    width: 100%;
+}
+#footerLogin {
+    text-align: center;
+}
+
+/* mainView css */
+
+* {
+    border-radius: 5px;
+}
+body {
+    background-color: orange;
+}
+#navMenu {
+    background-color: white;
+    padding: 10px 110px;
+}
+#navMenu .item.active {
+    border-bottom: 3px solid orange;
+    background-color: transparent;
+}
+i {
+    color: #585858;
+}
+#container {
+    margin-top: 70px;
+    padding: 20px;
+    background-color: white;
+}
+#newCard {
+    width: 100%;
+}
+#statistics .statistic>.label{
+    text-align: left;
+    font-weight: normal;
+    font-size: 10px;
+}
+#statistics .statistic>.value {
+    text-align: left;
+    font-weight: normal;
+    font-size: 14px;
+}
+#statistics .statistic {
+    min-width: 30%;
+}
+

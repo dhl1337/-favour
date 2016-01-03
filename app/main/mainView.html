@@ -1,0 +1,172 @@
+<!-- NAVIGATION -->
+<div class="ui fixed stackable secondary menu" id="navMenu">
+    <a class="item active"><i class="fa fa-home fa-lg"> Home</i></a>
+    <a class="item"><i class="fa fa-user fa-lg"> Profile</i></a>
+    <a class="item"><i class="fa fa-comments-o fa-lg"> Messages</i></a>
+    <div class="right menu">
+        <a class="item"><i class="fa fa-sign-out fa-lg"> Logout</i></a>
+    </div>
+</div>
+
+
+<!-- MAIN CONTENT -->
+<div class="ui container" id="container">
+    <div class="ui grid">
+        <div class="four wide column" ng-controller="mainController as homeCtrl">
+
+            <div class="profile side">
+                <div class="profile">
+                    <div class="user-profile">
+                        <img class="ui small rounded image" ng-src="{{homeCtrl.users.pic}}">
+                        <h3>{{homeCtrl.users.name}}</h3>
+                        <div class="ui three mini statistics" id="statistics">
+                            <div class="statistic">
+                                <div class="label">FAVORS</div>
+                                <div class="value">22</div>
+                            </div>
+                            <div class="statistic">
+                                <div class="label">FOLLOW</div>
+                                <div class="value">10</div>
+                            </div>
+                            <div class="statistic">
+                                <div class="label">FOLLOWERS</div>
+                                <div class="value">22</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui list">
+                    <div class="favor"><i class="fa fa-pencil-square-o"> Need a favor</i></div>
+                    <div class="message"><i class="fa fa-comments-o"> Messages</i></div>
+                </div>
+
+                <div class="ui favorQues modal">
+                    <div class="header">Whats the favor?!</div>
+                    <div class="content">
+                        <form class="ui form">
+                            <div class="field">
+                                <label>Title</label>
+                                <input type="text" ng-model="previewFavor">
+                            </div>
+                            <div class="field">
+                                <label>Favor</label>
+                                <textarea ng-model="previewText"></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="actions">
+                        <div class="ui button">Preview</div>
+                    </div>
+                </div>
+
+                <div class="ui previewFavor modal">
+                    <div class="header">Preview</div>
+                    <div class="content">
+                        <div class="ui center card">
+                            <div class="content">
+                                <img class="ui avatar image" ng-src="{{homeCtrl.users.image}}"> <a href="../profile/profile.view.html">{{homeCtrl.users.name}}</a>
+                                <div class="right floated meta">14h</div>
+                            </div>
+                            <div class="content">
+                                <div class="header">{{previewFavor}}</div>
+                                <div class="description">
+                                    <p>{{previewText}}</p>
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <div class="ui large transparent left icon input">
+                                    <div class="ui button"><i class="fa fa-comments-o"></i></div>
+                                </div>
+                                <i class="right floated star icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <div class="ui negative button"><i class="fa fa-times"> Cancel</i></div>
+                        <div class="ui positive button" ng-click="homeCtrl.addFavor(previewFavor, previewText)"><i class="fa fa-check"> Post</i></div>
+                    </div>
+                </div>
+
+                <h3 class="friends-header">Friends</h3>
+                <div class="friend-list" ng-repeat="friend in homeCtrl.users.friends">
+                    <div class="ui middle aligned selection list">
+                        <div class="item">
+                            <img class="ui avatar image" ng-src="{{friend.img}}">
+                            <div class="content">
+                                <div class="header">{{friend.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nine wide column">
+
+            <div class="ui secondary pointing menu">
+                <a class="active item" ng-click="myFavor={}">Favors</a>
+                <a class="item" ng-click="myFavor={name:'Dan Le'}">My Favors</a>
+                <a class="item">Favorite Favors</a>
+                <a class="item">Top Favors</a>
+            </div>
+
+            <div class="newsFeed" ng-controller="mainController as favorCtrl"> 
+                <div class="ui centered card" id="newCard" ng-repeat="favor in favorCtrl.favors | filter:myFavor">
+                    <div class="content">
+                        <img class="ui avatar image" ng-src="{{favor.img}}"> <a href="../profile/profile.view.html">{{favor.name}}</a>
+                        <div class="right floated meta">14h</div>
+                    </div>
+                    <div class="content">
+                        <div class="header">{{favor.favorTitle}}</div>
+                        <div class="meta">
+                            <span class="category">{{favor.favor}}</span>
+                        </div>
+                        <div class="description">
+                            <p>{{favor.favorContent}}</p>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <div class="ui large transparent left icon input">
+                            <div class="ui button"><i class="fa fa-comments-o"></i></div>
+                        </div>
+                        <i class="right floated fa fa-star-o"></i>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="ui modal">
+                <div class="header">Header</div>
+                <div class="content">
+                    <p></p>
+                </div>
+                <div class="actions">
+                    <div class="ui approve button">Approve</div>
+                    <div class="ui button">Neutral</div>
+                    <div class="ui cancel button">Cancel</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="three wide column">
+
+            <div class="follow">
+                <h2>Who to favor</h2>
+                <div class="ui list">
+                    <div class="item">hello</div>
+                    <div class="item">hello</div>
+                </div>
+            </div>
+            <div class="about">
+                <div class="ui list">
+                    <i class="fa fa-copyright"> 2015 Favor</i>
+                    <a class="item" href="../#page2">What is a FAVOR?</a>
+                    <a class="item">Who is our user?</a>
+                    <a class="item">Where is our office located?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
