@@ -2,6 +2,7 @@
  * Created by danle on 1/2/16.
  */
 (function(){
+    'use strict';
 
     function mainService (fb, $firebaseArray) {
 
@@ -9,7 +10,7 @@
             var ref = new Firebase(fb.url+'/favor/');
             var favorArr = $firebaseArray(ref);
             return favorArr;
-        }
+        };
 
     }
 

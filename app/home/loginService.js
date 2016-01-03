@@ -4,7 +4,7 @@
 (function(){
     'use strict';
 
-    function loginService (fb,$location) {
+    function loginService (fb, $location, $firebaseObject) {
 
         var currentUser = null;
         var ref = new Firebase(fb.url);
@@ -48,5 +48,5 @@
 
     angular
         .module('app')
-        .service('loginService',['fb','$location', loginService]);
+        .service('loginService',['fb','$location', '$firebaseObject', loginService]);
 })();
