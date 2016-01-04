@@ -2,15 +2,16 @@
  * Created by danle on 1/2/16.
  */
 $(document).ready(function(){
+
     $(window).scroll({
             previousTop: 0
         },
         function() {
             var currentTop = $(window).scrollTop();
             if (currentTop < this.previousTop) {
-                $(".ui.menu").show();
+                $("#navMenu").show();
             } else {
-                $(".ui.menu").hide();
+                $("#navMenu").hide();
             }
             this.previousTop = currentTop;
         });
@@ -20,7 +21,6 @@ $(document).ready(function(){
         $(this).addClass('active');
     });
 
-
     $('.favor').click(function () {
         // initialize all modals
         $('.coupled.modal')
@@ -29,15 +29,15 @@ $(document).ready(function(){
             })
         ;
 // open second modal on first modal buttons
-        $('.previewFavor.modal')
+        $('#preview')
             .modal('attach events', '.favorQues.modal .button')
         ;
 // show first immediately
-        $('.favorQues.modal')
+        $('#favorQuest')
             .modal('show')
         ;
-        $('.previewFavor.modal .ui.negative.button').on('click', function(){
-            $('.favorQues.modal')
+        $('#preview .ui.negative.button').on('click', function(){
+            $('#preview')
                 .modal('show')
             ;
         })

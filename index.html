@@ -6,19 +6,16 @@
     <link rel="stylesheet" href="assets/css/semantic.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
+
 </head>
 <body>
-
-
 <div ng-view></div>
-
-
-
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <!-- Angular -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.js"></script>
+<!-- Angular Route -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- Semantic -->
 <script src="assets/js/semantic.min.js"></script>
 <!-- Firebase -->
@@ -27,16 +24,16 @@
 <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.js"></script>
 
 
+
 <script src="assets/js/jQuery.js"></script>
-<script src="app/module/app.module.js"></script>
-<script src="app/routes/app.routes.js"></script>
-<script src="app/constant/app.constant.js"></script>
+<script src="app.js"></script>
 
+<script src="app/navController/navController.js"></script>
 <script src="app/home/homeController.js"></script>
-<script src="app/home/loginService.js"></script>
-
 <script src="app/main/mainController.js"></script>
-<script src="app/main/mainService.js"></script>
+
+<script src="app/service/mainService.js"></script>
+
 
 </body>
 </html>

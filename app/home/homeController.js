@@ -4,14 +4,15 @@
 (function(){
     'use strict';
 
-    function homeController (loginService) {
+    function homeController (MainService) {
 
-        this.login = function () {
-            loginService.loginWithFacebook();
+        var vm = this;
+        vm.login = function () {
+            MainService.loginWithFacebook();
         }
     }
 
     angular
         .module('app')
-        .controller('homeController',['loginService', homeController]);
+        .controller('homeController',['MainService', homeController]);
 })();

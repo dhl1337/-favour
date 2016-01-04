@@ -1,10 +1,10 @@
 /**
- * Created by danle on 1/2/16.
+ * Created by danle on 1/3/16.
  */
 (function(){
     'use strict';
 
-    function loginService (fb, $location, $firebaseObject) {
+    function mainService ($firebaseObject, $firebaseArray, $firebaseAuth, fb, $location, $window) {
 
         var currentUser = null;
         var ref = new Firebase(fb.url);
@@ -14,13 +14,13 @@
         this.loginWithFacebook = function () {
             usersRef.authWithOAuthPopup("facebook", function(error, user) {
                 if (error) {
-                    console.log("Login Failed!", error);
+                    alert("Login Failed!", error);
                 } else if (user) {
                     usersRef.child(user.uid).set({
                         id: user.uid,
                         name: user.facebook.displayName,
                         pic: user.facebook.profileImageURL});
-                    $location.path('/main');
+                    $window.location.href="/#/main";
                 }
             });
         };
@@ -30,12 +30,13 @@
             currentUser = user;
         });
 
+        this.currentUserName = currentUser.facebook.displayName;
+
         //logout the user
         this.logout = function () {
-            var authObj = $firebaseAuth(currentUser);
-            authObj.$unAuth();
-            $location.path('/home')
-        }
+            ref.unauth();
+            $location.path('/home');
+        };
 
         //getting current user info
         this.getUsers = function () {
@@ -44,9 +45,16 @@
             return obj;
         };
 
+
+        this.getFavors = function() {
+            var ref = new Firebase(fb.url+'/favor/');
+            var favorArr = $firebaseArray(ref);
+            return favorArr;
+        };
+
     }
 
     angular
         .module('app')
-        .service('loginService',['fb','$location', '$firebaseObject', loginService]);
+        .service('MainService',['$firebaseObject', '$firebaseArray', '$firebaseAuth', 'fb','$location','$window', mainService]);
 })();
