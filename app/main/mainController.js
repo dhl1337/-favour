@@ -38,6 +38,13 @@
             $(this).addClass('active');
         });
 
+        $('#newsCommentIcon').click(function () {
+            console.log('hello');
+            $('#hello')
+                .modal('show')
+            ;
+        });
+
         $('.favor').click(function () {
             // initialize all modals
             $('.coupled.modal')
@@ -64,15 +71,12 @@
             .rating('disable')
         ;
 
+
         $('#SignInBtn').click(function(){
             $('#modeldiv')
                 .modal('show')
             ;
         });
-
-        $('.ui.dropdown')
-            .dropdown()
-        ;
 
 
     }

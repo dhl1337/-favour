@@ -30,7 +30,7 @@
             currentUser = user;
         });
 
-        this.currentUserName = currentUser.facebook.displayName;
+        //this.currentUserName = currentUser.facebook.displayName;
 
         //logout the user
         this.logout = function () {

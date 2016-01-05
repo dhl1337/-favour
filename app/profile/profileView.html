@@ -1,58 +1,70 @@
-<header>
-    <div class="ui menu">
-        <div class="header item">
-            FAVOR
-        </div>
-        <a class="item" href="../home/home.view.html"><i class="fa fa-home"></i> Home</a>
-        <a class="item"><i class="fa fa-user"></i> Profile</a>
-        <a class="item"><i class="fa fa-comments-o"></i> Messages</a>
-        <div class="right menu">
-            <a class="item" href="../index.html"><i class="fa fa-sign-out"></i> Logout</a>
-        </div>
-
+<div class="ui fixed stackable secondary menu" id="navMenu" ng-controller="navController as nav">
+    <a class="item" href="/#/main"><i class="fa fa-home fa-lg" id="homeIcon"> Home</i></a>
+    <a class="item" href="/#/profile"><i class="fa fa-user fa-lg" id="profileIcon"> Profile</i></a>
+    <a class="item" href="/#/message"><i class="fa fa-comments-o fa-lg" id="navMessageIcon"> Messages</i></a>
+    <div class="right menu">
+        <a class="item" ng-click="nav.logout()"><i class="fa fa-sign-out fa-lg" id="logoutIcon"> Logout</i></a>
     </div>
-</header>
+</div>
 
-<div class="ui container">
-    <div class="profile" ng-controller="mainController as homeCtrl">
-        <div class="user-profile">
-            <div class="image">
-                <img class="ui middle aligned small rounded image" ng-src="{{homeCtrl.users.img}}">
-            </div>
+<div class="fakebackground">
+    <div class="ui container" id="profileContainer">
+        <div class="profile" ng-controller="mainController as mainCtrl">
+            <div class="userInfo">
+                <div class="ui grid">
+                    <div class="two wide column">
+                        <img class="ui top aligned small rounded image" ng-src="{{mainCtrl.users.pic}}">
+                    </div>
+                    <div class="thirteen wide column">
+                        <h3>{{mainCtrl.users.name}}</h3>
 
-            <div class="ui mini statistics">
-                <div class="statistic">
-                    <div class="value">
-                        22
                     </div>
-                    <div class="label">
-                        Faves
-                    </div>
-                </div>
-                <div class="statistic">
-                    <div class="value">
-                        31,200
-                    </div>
-                    <div class="label">
-                        Views
-                    </div>
-                </div>
-                <div class="statistic">
-                    <div class="value">
-                        22
-                    </div>
-                    <div class="label">
-                        Members
+                    <div class="one wide column">
+
                     </div>
                 </div>
             </div>
 
-            <div class="header">
-                <h2>{{homeCtrl.users.name}}</h2>
-            </div>
+            <div class="ui three column grid">
+                <div class="column">
+                    <h3>Feedback ratings</h3>
+                    <div class="ui list">
+                        <div class="item">
+                            <div class="ui star rating" data-rating="3"></div>
+                            <label>Communication</label>
+                        </div>
+                        <div class="item">
+                            <div class="ui star rating" data-rating="3"></div>
+                            <label>Communication</label>
+                        </div>
+                        <div class="item">
+                            <div class="ui star rating" data-rating="3"></div>
+                            <label>Communication</label>
+                        </div>
+                    </div>
 
-            <div class="location">
-                <i class="fa fa-map-marker fa-lg"> {{homeCtrl.users.location}}</i>
+                </div>
+                <div class="column" id="moods">
+                    <div class="ui horizontal list">
+                        <div class="item">
+                            <i class="fa fa-plus-circle fa-lg"> 23</i><br>
+                            <label>Positive</label>
+                        </div>
+                        <div class="item">
+                            <i class="fa fa-stop-circle fa-lg"> 23</i><br>
+                            <label>Neutral</label>
+                        </div>
+                        <div class="item">
+                            <i class="fa fa-minus-circle fa-lg"> 2</i><br>
+                            <label>Negative</label>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="column">
+                    <h3>feedback</h3>
+                </div>
             </div>
         </div>
     </div>

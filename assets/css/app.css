@@ -58,7 +58,7 @@ strong {
     text-align: center;
     padding-top: 100px;
 }
-#locationHeader {
+.locationHeader {
     color: white;
     text-align: center;
     padding-top: 100px;
@@ -113,5 +113,51 @@ strong {
 }
 #newsCommentIcon {
     margin-right: 10px;
+}
+
+/* profileView css */
+#profileContainer {
+    margin-top: 100px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+#stats {
+    font-size: 20px;
+}
+
+#moods .items{
+    width: 33%;
+}
+
+/* register css */
+#registerContainer {
+    margin-top: 40px;
+}
+.registerHeader {
+    color: orange;
+}
+.headerRegister {
+    padding-left: 100px;
+    margin-bottom: 50px;
+}
+#registerForm {
+    padding-left: 100px;
+    padding-right: 300px;
+}
+#dividingHeader {
+    color: orange;
+}
+#registerBtn {
+    margin-top: 30px;
+    text-align: center;
+    background-color: orange;
+    color: white;
+    width: 100%;
+}
+.info {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    text-align: center;
 }
 
