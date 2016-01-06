@@ -4,12 +4,12 @@
 (function () {
     angular
         .module('app')
-        .directive('navDirectives', navDirectives);
+        .directive('navBar', navBar);
 
-    function navDirectives () {
+    function navBar () {
         var directive = {
             link: link,
-            templateUrl: 'view/nav-partialViewl.html',
+            templateUrl: '../app/view/nav-partialView.html',
             controller: NavController,
             controllerAs: 'vm',
             bindToController: true
@@ -22,8 +22,11 @@
         }
     }
 
-    function NavController () {
+    function NavController (MainSvc) {
         var vm = this;
 
+        vm.logout = function () {
+            MainService.logout();
+        }
     }
 })();

@@ -1,25 +1,33 @@
 /**
- * Created by danle on 1/2/16.
+ * Created by danle on 1/5/16.
  */
-(function(){
+(function () {
+    'use strict';
+    angular
+        .module('app')
+        .controller('MainCtrl',['MainSvc', MainCtrl]);
 
-    function mainController (MainService) {
+    function MainCtrl (MainSvc) {
         var vm = this;
 
         vm.getFavors = function () {
-            vm.favors = MainService.getFavors();
+            vm.favors = MainSvc.getFavors();
         };
         vm.getFavors();
 
         vm.getUsers = function () {
-            vm.users = MainService.getUsers();
+            vm.users = MainSvc.getUsers();
         };
         vm.getUsers();
 
-        vm.currentUser = MainService.currentUserName;
+        vm.currentUser = MainSvc.currentUserName;
+
+        vm.login = function () {
+            MainSvc.loginWithFacebook();
+        };
 
         vm.logout = function () {
-            MainService.logout();
+            MainSvc.logout();
         };
         vm.addFavor = function (favorTitle, favorContent) {
             vm.favor = {
@@ -77,11 +85,5 @@
                 .modal('show')
             ;
         });
-
-
     }
-
-    angular
-        .module('app')
-        .controller('mainController', ['MainService', mainController]);
 })();

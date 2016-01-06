@@ -1,11 +1,12 @@
 /**
- * Created by danle on 1/3/16.
+ * Created by danle on 1/5/16.
  */
-(function(){
-    'use strict';
+(function () {
+    angular
+        .module('app')
+        .service('MainSvc', ['$firebaseObject', '$firebaseArray', '$firebaseAuth', 'fb','$location','$window', MainSvc]);
 
-    function mainService ($firebaseObject, $firebaseArray, $firebaseAuth, fb, $location, $window) {
-
+    function MainSvc ($firebaseObject, $firebaseArray, $firebaseAuth, fb, $location, $window) {
         var currentUser = null;
         var ref = new Firebase(fb.url);
         var usersRef = ref.child("users");
@@ -53,8 +54,4 @@
         };
 
     }
-
-    angular
-        .module('app')
-        .service('MainService',['$firebaseObject', '$firebaseArray', '$firebaseAuth', 'fb','$location','$window', mainService]);
 })();
