@@ -11,7 +11,7 @@
         var vm = this;
 
         vm.login = function () {
-            vm.users = MainSvc.loginWithFacebook();
+            vm.user = MainSvc.loginWithFacebook();
         };
 
 
@@ -19,20 +19,25 @@
             MainSvc.currentUserName();
         };
 
+        vm.currentUsers = function () {
+            vm.user = MainSvc.getUser();
+        };
+
+        vm.users = MainSvc.getUsers();
 
         vm.getFavors = function () {
             vm.favors = MainSvc.getFavors();
         };
         vm.getFavors();
 
-        vm.getUsers = function () {
-            vm.users = MainSvc.getUsers();
+        vm.getUser = function () {
+            vm.user = MainSvc.getUser();
         };
 
         vm.addFavor = function (favorTitle, favorContent) {
             vm.favor = {
-                name: vm.users.name,
-                image: vm.users.image,
+                name: vm.user.name,
+                image: vm.user.image,
                 favorTitle: favorTitle,
                 favorContent: favorContent,
                 date: Firebase.ServerValue.TIMESTAMP
@@ -41,7 +46,7 @@
             vm.favors.$add(vm.favor);
         };
 
-        vm.getUsers();
+        vm.getUser();
 
         $('.favor').click(function () {
             // initialize all modals

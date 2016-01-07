@@ -77,7 +77,7 @@ strong {
     background-color: transparent;
 }
 #homeIcon, #profileIcon, #navMessageIcon, #logoutIcon, #pencilIcon, #messageIcon {
-    color: #585858;
+    color: orange;
 }
 #container {
     margin-top: 80px;
@@ -99,7 +99,7 @@ strong {
     min-width: 30%;
 }
 .fakebackground {
-    background-color: orange;
+    background-color: #F6F6F6;
     width: 100%;
     min-height: 100vh;
     overflow: hidden;
@@ -110,6 +110,9 @@ strong {
 }
 #newsCommentIcon {
     margin-right: 10px;
+}
+#postingCard {
+    width: 100%;
 }
 
 /* profileView css */

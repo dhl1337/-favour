@@ -39,7 +39,7 @@
         });
 
         //getting current user info
-        this.getUsers = function () {
+        this.getUser = function () {
             if(currentUser) {
                 console.log('Got User: ',  currentUser);
                 var ref = new Firebase(fb.url+'/users/'+currentUser.uid);
@@ -48,6 +48,13 @@
                 console.log('No Current User');
                 return null;
             }
+        };
+
+        //getting the users
+        this.getUsers = function () {
+            var ref = new Firebase(fb.url+'/users/');
+            var usersArr = $firebaseArray(ref);
+            return usersArr;
         };
 
         ////logout the user

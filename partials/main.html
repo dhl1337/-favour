@@ -12,10 +12,10 @@
                         <div class="user-profile">
                             <div class="ui card">
                                 <div class="image">
-                                    <img ng-src="{{mainCtrl.users.image}}">
+                                    <img ng-src="{{mainCtrl.user.image}}">
                                 </div>
                                 <div class="content">
-                                    <a class="header">{{mainCtrl.users.name}}</a>
+                                    <a class="header">{{mainCtrl.user.name}}</a>
                                     <div class="meta">
                                         <span class="date">Joined in 2013</span>
                                     </div>
@@ -62,8 +62,8 @@
                     <div class="ui card">
                         <div class="content">
                             <div class="ui list">
-                                <div class="favor"><i class="fa fa-pencil-square-o" id="pencilIcon"> Need a favour</i></div>
-                                <div class="message"><i class="fa fa-comments-o" id="messageIcon"> Messages</i></div>
+                                <div class="favor" id="pencilIcon" style="font-size: 20px"><i class="write icon"></i> Post a favour</div>
+                                <div class="message" id="messageIcon" style="font-size: 20px"><i class="mail outline icon"></i>  Messages</div>
                             </div>
                         </div>
                     </div>
@@ -135,27 +135,18 @@
                 </div>
             </div>
 
-            <div class="nine wide column">
-
-                <div class="ui card">
-                    <div class="content">
-                        <div class="ui inline dropdown" tabindex="0">
-                            <label>Show me</label>
-                            <div class="text">today</div>
-                            <i class="dropdown icon"></i>
-                            <div class="menu" tabindex="-1">
-                                <div class="item active selected" data-text="today">Today</div>
-                                <div class="item" data-text="this week">This Week</div>
-                                <div class="item" data-text="this month">This Month</div>
-                                <div class="divider"></div>
-                                <div class="item" data-text="my favours">My Favour</div>
-                                <div class="item" data-text="my favorite favours">Favorite Favour</div>
-                                <div class="item" data-text="top favours">Top Favour</div>
-                            </div>
-                        </div>
+            <div class="eight wide column">
+                <label>Show me</label>
+                <div class="ui inline dropdown" tabindex="0" style="color: orange">
+                    <div class="text">today</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu" tabindex="-1">
+                        <div class="item active" data-text="all the favours" ng-click="myFavor={}">Favour</div>
+                        <div class="item" data-text="my favours" ng-click="myFavor={name: mainCtrl.users.name}">My Favour</div>
+                        <div class="item" data-text="my favorite favours">Favorite Favour</div>
+                        <div class="item" data-text="top favours">Top Favour</div>
                     </div>
                 </div>
-
 
                 <!--<div class="ui tabular menu">-->
                     <!--<a class="active item" ng-click="myFavor={}">Favours</a>-->
@@ -181,13 +172,9 @@
                         </div>
                         <div class="extra content">
                             <div class="actions">
-                                <a class="reply">Reply</a>
-                                <a class="save">Save</a>
-                                <a class="hide">Hide</a>
-                                <a>
-                                    <i class="expand icon"></i>
-                                    Full-screen
-                                </a>
+                                <i class="reply icon"></i>
+                                <i class="empty star icon"></i>
+                                <i class="edit icon"></i>
                             </div>
                         </div>
                         <div class="ui modal" id="comment">
@@ -217,12 +204,12 @@
 
             </div>
 
-            <div class="three wide column">
+            <div class="four wide column">
                 <div class="follow">
                     <div class="ui card">
                         <div class="content">
                             <div class="header">Who to favour</div>
-                            <div class="ui selection list" ng-repeat="follow in mainCtrl.favors">
+                            <div class="ui selection list" ng-repeat="follow in mainCtrl.users">
                                 <div class="item">
                                     <div class="content">
                                         <div class="header">
