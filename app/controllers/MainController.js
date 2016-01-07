@@ -5,10 +5,19 @@
     'use strict';
     angular
         .module('app')
-        .controller('MainCtrl',['MainSvc', MainCtrl]);
+        .controller('MainCtrl',['MainSvc', '$stateParams', MainCtrl]);
 
-    function MainCtrl (MainSvc) {
+    function MainCtrl (MainSvc, $stateParams) {
         var vm = this;
+
+        vm.login = function () {
+            vm.users = MainSvc.loginWithFacebook();
+        };
+
+        vm.currentUser = function () {
+            MainSvc.currentUserName();
+        };
+
 
         vm.getFavors = function () {
             vm.favors = MainSvc.getFavors();
@@ -20,19 +29,10 @@
         };
         vm.getUsers();
 
-        vm.currentUser = MainSvc.currentUserName;
-
-        vm.login = function () {
-            MainSvc.loginWithFacebook();
-        };
-
-        vm.logout = function () {
-            MainSvc.logout();
-        };
         vm.addFavor = function (favorTitle, favorContent) {
             vm.favor = {
                 name: vm.users.name,
-                pic: vm.users.pic,
+                image: vm.users.image,
                 favorTitle: favorTitle,
                 favorContent: favorContent,
                 date: Firebase.ServerValue.TIMESTAMP
@@ -41,18 +41,6 @@
             vm.favors.$add(vm.favor);
         };
 
-        $('.ui .item').on('click', function() {
-            $('.ui .item').removeClass('active');
-            $(this).addClass('active');
-        });
-
-        $('#newsCommentIcon').click(function () {
-            console.log('hello');
-            $('#hello')
-                .modal('show')
-            ;
-        });
-
         $('.favor').click(function () {
             // initialize all modals
             $('.coupled.modal')
@@ -60,11 +48,11 @@
                     allowMultiple: true
                 })
             ;
-// open second modal on first modal buttons
+            // open second modal on first modal buttons
             $('#preview')
                 .modal('attach events', '#favorQuest .button')
             ;
-// show first immediately
+            // show first immediately
             $('#favorQuest')
                 .modal('show')
             ;
@@ -75,10 +63,19 @@
             })
         });
 
+        $('.ui.dropdown')
+            .dropdown()
+        ;
+
+        $('#newsCommentIcon').click(function () {
+            $('#comment')
+                .modal('show')
+            ;
+        });
+
         $('.ui.rating')
             .rating('disable')
         ;
-
 
         $('#SignInBtn').click(function(){
             $('#modeldiv')

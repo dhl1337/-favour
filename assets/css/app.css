@@ -129,6 +129,9 @@ strong {
 #moods .items{
     width: 33%;
 }
+#reviewColumn {
+    text-align: center;
+}
 
 /* register css */
 #registerContainer {
@@ -160,4 +163,5 @@ strong {
     margin-bottom: 50px;
     text-align: center;
 }
+
 

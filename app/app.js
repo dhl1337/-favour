@@ -4,29 +4,31 @@
 (function(){
     'use strict';
     angular
-        .module('app', ['firebase', 'ngRoute'])
+        .module('app', ['firebase', 'ui.router'])
         .constant('fb', {
             url: 'https://needsfavor.firebaseio.com'
         })
-        .config(['$routeProvider', config]);
+        .config(['$stateProvider','$urlRouterProvider', config]);
 
-    function config ($routeProvider) {
-        $routeProvider
-            .when('/home', {
+    function config ($stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('home', {
+                url: '/home',
                 templateUrl: 'partials/home.html'
             })
-            .when('/main', {
+            .state('main', {
+                url: '/main',
                 templateUrl: 'partials/main.html',
                 controller:'MainCtrl',
             })
-            .when('/register', {
+            .state('register', {
+                url: '/register',
                 templateUrl: 'partials/reigster.html'
             })
-            .when('/profile', {
+            .state('profile', {
+                url: '/profile',
                 templateUrl: 'partials/profile.html'
-            })
-            .otherwise({
-                redirectTo: '/home'
             });
+        $urlRouterProvider.otherwise('/home');
     }
 })();

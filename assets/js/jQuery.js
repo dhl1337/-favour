@@ -57,12 +57,9 @@ $(document).ready(function(){
         .dropdown()
     ;
 
-    $('#newsCommentIcon').click(function () {
-        console.log('hello');
-        $('#hello')
+    $('#newsCommentIcon').on('click',function () {
+        $('#comment')
             .modal('show')
         ;
     });
-
-
 });

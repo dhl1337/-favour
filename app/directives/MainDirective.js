@@ -8,25 +8,24 @@
 
     function navBar () {
         var directive = {
-            link: link,
             templateUrl: '../app/view/nav-partialView.html',
             controller: NavController,
-            controllerAs: 'vm',
+            controllerAs: 'navCtrl',
             bindToController: true
         };
-
         return directive;
-
-        function link (scope, element, attrs) {
-
-        }
     }
 
     function NavController (MainSvc) {
         var vm = this;
 
         vm.logout = function () {
-            MainService.logout();
-        }
+            MainSvc.logout();
+        };
+
+        $('.ui .item').on('click', function() {
+            $('.ui .item').removeClass('active');
+            $(this).addClass('active');
+        });
     }
 })();

@@ -7,45 +7,46 @@
         .service('MainSvc', ['$firebaseObject', '$firebaseArray', '$firebaseAuth', 'fb','$location','$window', MainSvc]);
 
     function MainSvc ($firebaseObject, $firebaseArray, $firebaseAuth, fb, $location, $window) {
-        var currentUser = null;
-        var ref = new Firebase(fb.url);
-        var usersRef = ref.child("users");
 
         //login with facebook
         this.loginWithFacebook = function () {
-            usersRef.authWithOAuthPopup("facebook", function(error, user) {
-                if (error) {
-                    alert("Login Failed!", error);
-                } else if (user) {
-                    usersRef.child(user.uid).set({
-                        id: user.uid,
-                        name: user.facebook.displayName,
-                        pic: user.facebook.profileImageURL});
+            var ref = new Firebase (fb.url);
+            var authObj = $firebaseAuth(ref);
+
+            authObj.$authWithOAuthPopup("facebook")
+                .then(function(authData) {
+                    ref.child('users').child(authData.uid).set({
+                       uid: authData.uid,
+                        name: authData.facebook.displayName,
+                        image: authData.facebook.profileImageURL
+                    });
                     $window.location.href="/#/main";
-                }
+            })
+                .catch(function(error) {
+                console.error("Authentication failed:", error);
             });
         };
 
-        //current userid
+        var currentUser = null;
+        var ref = new Firebase(fb.url);
         ref.onAuth(function (user) {
             currentUser = user;
         });
 
-        //this.currentUserName = currentUser.facebook.displayName;
-
-        //logout the user
-        this.logout = function () {
-            ref.unauth();
-            $location.path('/home');
-        };
+        this.currentUserName = currentUser.facebook.displayName;
 
         //getting current user info
         this.getUsers = function () {
-            var ref = new Firebase(fb.url+'/users/'+ currentUser.uid);
-            var obj =  $firebaseObject(ref);
-            return obj;
+            var ref = new Firebase(fb.url+'/users/'+currentUser.uid);
+            return $firebaseObject(ref);
         };
 
+        ////logout the user
+        this.logout = function () {
+            var ref = new Firebase (fb.url);
+            ref.unauth();
+            $location.path('/home');
+        };
 
         this.getFavors = function() {
             var ref = new Firebase(fb.url+'/favor/');

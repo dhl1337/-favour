@@ -10,7 +10,7 @@
                 <div class="profile side">
                     <div class="profile">
                         <div class="user-profile">
-                            <img class="ui small rounded image" ng-src="{{mainCtrl.users.pic}}">
+                            <img class="ui small rounded image" ng-src="{{mainCtrl.users.image}}">
                             <h3>{{mainCtrl.users.name}}</h3>
                             <div class="ui three mini statistics" id="statistics">
                                 <div class="statistic">
@@ -48,7 +48,6 @@
                                 </div>
                             </form>
                         </div>
-
                         <div class="actions">
                             <div class="ui button">Preview</div>
                         </div>
@@ -59,7 +58,7 @@
                         <div class="content">
                             <div class="ui center card" id="previewModal">
                                 <div class="content">
-                                    <img class="ui avatar image" ng-src="{{mainCtrl.users.pic}}"> <a href="/#/profile">{{mainCtrl.users.name}}</a>
+                                    <img class="ui avatar image" ng-src="{{mainCtrl.users.image}}"> <a href="/#/profile">{{mainCtrl.users.name}}</a>
                                     <div class="right floated meta">14h</div>
                                 </div>
                                 <div class="content">
@@ -83,10 +82,10 @@
                     </div>
 
                     <h3 class="friends-header">Friends</h3>
-                    <div class="friend-list" ng-repeat="friend in mainCtrl.users.friends">
+                    <div class="friend-list" ng-repeat="friend in mainCtrl.favors">
                         <div class="ui middle aligned selection list">
                             <div class="item">
-                                <img class="ui avatar image" ng-src="{{friend.img}}">
+                                <img class="ui avatar image" ng-src="{{friend.image}}">
                                 <div class="content">
                                     <div class="header">{{friend.name}}</div>
                                 </div>
@@ -98,17 +97,62 @@
 
             <div class="nine wide column">
 
-                <div class="ui secondary pointing menu">
-                    <a class="active item" ng-click="myFavor={}">Favours</a>
-                    <a class="item" ng-click="myFavor={name: mainCtrl.currentUser}">My favours</a>
-                    <a class="item">Favorite Favors</a>
-                    <a class="item">Top Favors</a>
+                <div class="ui labeled icon top right pointing dropdown button">
+                    <i class="filter icon"></i>
+                    <span class="text">Filter Posts</span>
+                    <div class="menu">
+                        <div class="ui search icon input">
+                            <i class="search icon"></i>
+                            <input type="text" name="search" placeholder="Search issues...">
+                        </div>
+                        <div class="divider"></div>
+                        <div class="header">
+                            <i class="tags icon"></i>
+                            Filter by tag
+                        </div>
+                        <div class="item">
+                            <div class="ui red empty circular label"></div>
+                            Important
+                        </div>
+                        <div class="item">
+                            <div class="ui blue empty circular label"></div>
+                            Announcement
+                        </div>
+                        <div class="item">
+                            <div class="ui black empty circular label"></div>
+                            Discussion
+                        </div>
+                        <div class="divider"></div>
+                        <div class="header">
+                            <i class="calendar icon"></i>
+                            Filter by date
+                        </div>
+                        <div class="item">
+                            <i class="olive circle icon"></i>
+                            This Week
+                        </div>
+                        <div class="item">
+                            <i class="violet circle icon"></i>
+                            This Month
+                        </div>
+                        <div class="item">
+                            <i class="orange circle icon"></i>
+                            This Year
+                        </div>
+                    </div>
                 </div>
+
+                <!--<div class="ui tabular menu">-->
+                    <!--<a class="active item" ng-click="myFavor={}">Favours</a>-->
+                    <!--<a class="item" ng-click="myFavor={name: mainCtrl.currentUser}">My favours</a>-->
+                    <!--<a class="item">Favorite Favors</a>-->
+                    <!--<a class="item">Top Favors</a>-->
+                <!--</div>-->
 
                 <div class="newsFeed"> 
                     <div class="ui centered card" id="newCard" ng-repeat="favor in mainCtrl.favors | filter:myFavor | orderBy:'-date'">
                         <div class="content">
-                            <img class="ui avatar image" ng-src="{{favor.pic}}"> <a href="/#/profile">{{favor.name}}</a>
+                            <img class="ui avatar image" ng-src="{{favor.image}}"> <a href="/#/profile">{{favor.name}}</a>
                             <div class="right floated meta">{{favor.date|date:'short'}}</div>
                         </div>
                         <div class="content">
@@ -121,38 +165,51 @@
                             </div>
                         </div>
                         <div class="extra content">
+                            <div class="ui rating" data-max-rating="1" id="newsStarIcon"></div>
                             <i class="fa fa-comment-o fa-lg" id="newsCommentIcon"></i>
-                            <i class="fa fa-star-o fa-lg" id="newsStarIcon"></i>
+                        </div>
+                        <div class="ui modal" id="comment">
+                            <div class="header">Message</div>
+                            <div class="content">
+                                <form class="ui form">
+                                    <div class="field">
+                                        <label>Title</label>
+                                        <input type="text" ng-model="previewFavor" required>
+                                    </div>
+                                    <div class="field">
+                                        <label>Favor</label>
+                                        <textarea ng-model="previewText" required></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="actions">
+                                <div class="ui button">Preview</div>
+                            </div>
                         </div>
                     </div>
-                </div> 
-                <div class="ui modal" id="hello">
-                    <div class="header">Whats the favour?!</div>
-                    <div class="content">
-                        <form class="ui form">
-                            <div class="field">
-                                <label>Title</label>
-                                <input type="text">
-                            </div>
-                            <div class="field">
-                                <label>Favor</label>
-                                <textarea></textarea>
-                            </div>
-                        </form>
-                    </div>
 
-                    <div class="actions">
-                        <div class="ui button">BOOM</div>
-                    </div>
-                </div>
+
+
+                </div> 
+
+
             </div>
 
             <div class="three wide column">
                 <div class="follow">
                     <h3>Who to favour</h3>
                     <div class="ui list">
-                        <div class="item">hello</div>
-                        <div class="item">hello</div>
+                        <div class="ui small card" ng-repeat="follow in mainCtrl.favors">
+                            <div class="content">
+                                <div class="header">
+                                    <img ng-src="{{follow.image}}" class="ui avatar image">
+                                    {{follow.name}}
+                                </div>
+                                <div class="description">
+                                    Short Description
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>

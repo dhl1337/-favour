@@ -5,22 +5,33 @@
 <div class="fakebackground">
     <div class="ui container" id="profileContainer">
         <div class="profile" ng-controller="MainCtrl as mainCtrl">
+
             <div class="userInfo">
-                <div class="ui grid">
-                    <div class="two wide column">
-                        <img class="ui top aligned small rounded image" ng-src="{{mainCtrl.users.pic}}">
-                    </div>
-                    <div class="thirteen wide column">
-                        <h3>{{mainCtrl.users.name}}</h3>
-
-                    </div>
-                    <div class="one wide column">
-
+                <div class="ui relaxed divided items">
+                    <div class="item">
+                        <div class="ui small image">
+                            <img class="ui top aligned small rounded image" ng-src="{{mainCtrl.users.image}}">
+                        </div>
+                        <div class="content">
+                            <a class="header"><h3>{{mainCtrl.users.name}}</h3></a>
+                            <div class="meta">
+                                <a>Date</a>
+                                <a>Category</a>
+                            </div>
+                            <div class="description">
+                                <p> A description which may flow for several lines and give context to the content.</p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui right floated green button">
+                                    <i class="fa fa-plus"> Follow</i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="ui three column grid">
+            <br>
+            <div class="ui three column grid" id="reviewColumn">
                 <div class="column">
                     <h3>Feedback ratings</h3>
                     <div class="ui list">
