@@ -3,36 +3,71 @@
 
 
 <!-- MAIN CONTENT -->
-<div class ="fakebackground">
-    <div class="ui container" id="container" ng-controller="MainCtrl as mainCtrl">
+<div class ="fakebackground" ng-controller="MainCtrl as mainCtrl">
+<div class="ui container" id="container">
         <div class="ui grid">
             <div class="four wide column">
                 <div class="profile side">
                     <div class="profile">
                         <div class="user-profile">
-                            <img class="ui small rounded image" ng-src="{{mainCtrl.users.image}}">
-                            <h3>{{mainCtrl.users.name}}</h3>
-                            <div class="ui three mini statistics" id="statistics">
-                                <div class="statistic">
-                                    <div class="label">FAVORS</div>
-                                    <div class="value">22</div>
+                            <div class="ui card">
+                                <div class="image">
+                                    <img ng-src="{{mainCtrl.users.image}}">
                                 </div>
-                                <div class="statistic">
-                                    <div class="label">FOLLOW</div>
-                                    <div class="value">10</div>
+                                <div class="content">
+                                    <a class="header">{{mainCtrl.users.name}}</a>
+                                    <div class="meta">
+                                        <span class="date">Joined in 2013</span>
+                                    </div>
+                                    <div class="description">
+                                        love to help others
+                                    </div>
                                 </div>
-                                <div class="statistic">
-                                    <div class="label">FOLLOWERS</div>
-                                    <div class="value">22</div>
+                                <div class="extra content">
+                                    <div class="ui three mini statistics" id="statistics">
+                                        <div class="statistic">
+                                            <div class="label">FAVORS</div>
+                                            <div class="value">{{mainCtrl.favors.length}}</div>
+                                        </div>
+                                        <div class="statistic">
+                                            <div class="label">FOLLOW</div>
+                                            <div class="value">324</div>
+                                        </div>
+                                        <div class="statistic">
+                                            <div class="label">FOLLOWERS</div>
+                                            <div class="value">22</div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <!--<img class="ui small rounded image" ng-src="{{mainCtrl.users.image}}">-->
+                            <!--<h3>{{mainCtrl.users.name}}</h3>-->
+                            <!--<div class="ui three mini statistics" id="statistics">-->
+                                <!--<div class="statistic">-->
+                                    <!--<div class="label">FAVORS</div>-->
+                                    <!--<div class="value">{{mainCtrl.favors.length}}</div>-->
+                                <!--</div>-->
+                                <!--<div class="statistic">-->
+                                    <!--<div class="label">FOLLOW</div>-->
+                                    <!--<div class="value">324</div>-->
+                                <!--</div>-->
+                                <!--<div class="statistic">-->
+                                    <!--<div class="label">FOLLOWERS</div>-->
+                                    <!--<div class="value">22</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="ui list">
+                                <div class="favor"><i class="fa fa-pencil-square-o" id="pencilIcon"> Need a favour</i></div>
+                                <div class="message"><i class="fa fa-comments-o" id="messageIcon"> Messages</i></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="ui list">
-                        <div class="favor"><i class="fa fa-pencil-square-o" id="pencilIcon"> Need a favour</i></div>
-                        <div class="message"><i class="fa fa-comments-o" id="messageIcon"> Messages</i></div>
-                    </div>
 
                     <div class="ui modal" id="favorQuest">
                         <div class="header">Whats the favour?!</div>
@@ -81,66 +116,46 @@
                         </div>
                     </div>
 
-                    <h3 class="friends-header">Friends</h3>
-                    <div class="friend-list" ng-repeat="friend in mainCtrl.favors">
-                        <div class="ui middle aligned selection list">
-                            <div class="item">
-                                <img class="ui avatar image" ng-src="{{friend.image}}">
-                                <div class="content">
-                                    <div class="header">{{friend.name}}</div>
+                    <div class="ui card">
+                        <div class="content">
+                            <h3 class="friends-header">Friends</h3>
+                            <div class="friend-list" ng-repeat="friend in mainCtrl.favors">
+                                <div class="ui middle aligned selection list">
+                                    <div class="item">
+                                        <img class="ui avatar image" ng-src="{{friend.image}}">
+                                        <div class="content">
+                                            <div class="header">{{friend.name}}</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             <div class="nine wide column">
 
-                <div class="ui labeled icon top right pointing dropdown button">
-                    <i class="filter icon"></i>
-                    <span class="text">Filter Posts</span>
-                    <div class="menu">
-                        <div class="ui search icon input">
-                            <i class="search icon"></i>
-                            <input type="text" name="search" placeholder="Search issues...">
-                        </div>
-                        <div class="divider"></div>
-                        <div class="header">
-                            <i class="tags icon"></i>
-                            Filter by tag
-                        </div>
-                        <div class="item">
-                            <div class="ui red empty circular label"></div>
-                            Important
-                        </div>
-                        <div class="item">
-                            <div class="ui blue empty circular label"></div>
-                            Announcement
-                        </div>
-                        <div class="item">
-                            <div class="ui black empty circular label"></div>
-                            Discussion
-                        </div>
-                        <div class="divider"></div>
-                        <div class="header">
-                            <i class="calendar icon"></i>
-                            Filter by date
-                        </div>
-                        <div class="item">
-                            <i class="olive circle icon"></i>
-                            This Week
-                        </div>
-                        <div class="item">
-                            <i class="violet circle icon"></i>
-                            This Month
-                        </div>
-                        <div class="item">
-                            <i class="orange circle icon"></i>
-                            This Year
+                <div class="ui card">
+                    <div class="content">
+                        <div class="ui inline dropdown" tabindex="0">
+                            <label>Show me</label>
+                            <div class="text">today</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu" tabindex="-1">
+                                <div class="item active selected" data-text="today">Today</div>
+                                <div class="item" data-text="this week">This Week</div>
+                                <div class="item" data-text="this month">This Month</div>
+                                <div class="divider"></div>
+                                <div class="item" data-text="my favours">My Favour</div>
+                                <div class="item" data-text="my favorite favours">Favorite Favour</div>
+                                <div class="item" data-text="top favours">Top Favour</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
 
                 <!--<div class="ui tabular menu">-->
                     <!--<a class="active item" ng-click="myFavor={}">Favours</a>-->
@@ -165,8 +180,15 @@
                             </div>
                         </div>
                         <div class="extra content">
-                            <div class="ui rating" data-max-rating="1" id="newsStarIcon"></div>
-                            <i class="fa fa-comment-o fa-lg" id="newsCommentIcon"></i>
+                            <div class="actions">
+                                <a class="reply">Reply</a>
+                                <a class="save">Save</a>
+                                <a class="hide">Hide</a>
+                                <a>
+                                    <i class="expand icon"></i>
+                                    Full-screen
+                                </a>
+                            </div>
                         </div>
                         <div class="ui modal" id="comment">
                             <div class="header">Message</div>
@@ -197,16 +219,20 @@
 
             <div class="three wide column">
                 <div class="follow">
-                    <h3>Who to favour</h3>
-                    <div class="ui list">
-                        <div class="ui small card" ng-repeat="follow in mainCtrl.favors">
-                            <div class="content">
-                                <div class="header">
-                                    <img ng-src="{{follow.image}}" class="ui avatar image">
-                                    {{follow.name}}
-                                </div>
-                                <div class="description">
-                                    Short Description
+                    <div class="ui card">
+                        <div class="content">
+                            <div class="header">Who to favour</div>
+                            <div class="ui selection list" ng-repeat="follow in mainCtrl.favors">
+                                <div class="item">
+                                    <div class="content">
+                                        <div class="header">
+                                            <img ng-src="{{follow.image}}" class="ui avatar image">
+                                            {{follow.name}}
+                                        </div>
+                                        <div class="description">
+                                            Short Description
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -214,12 +240,36 @@
                 </div>
                 <br>
                 <div class="about">
-                    <div class="ui list">
-                        <i class="fa fa-copyright"> 2015 Favour</i>
-                        <a class="item" href="../app#page2">What is a FAVOUR?</a>
-                        <a class="item">Who is our user?</a>
-                        <a class="item">Where is our office located?</a>
+                    <div class="ui card">
+                        <div class="content">
+                            <i class="fa fa-copyright"> 2015 Favour</i>
+                            <div class="ui accordion">
+                                <div class="active title">
+                                    <i class="dropdown icon"></i>
+                                    What is favour?
+                                </div>
+                                <div class="active content">
+                                    <p>an act of kindness beyond what is due or usual.</p>
+                                </div>
+                                <div class="title">
+                                    <i class="dropdown icon"></i>
+                                    What kinds of favour are there?
+                                </div>
+                                <div class="content">
+                                    <p>The favour could be any kind of services!</p>
+                                </div>
+                                <div class="title">
+                                    <i class="dropdown icon"></i>
+                                    How do you acquire a favour?
+                                </div>
+                                <div class="content">
+                                    <p>It's simple! just go to your home page and ask!</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

@@ -14,6 +14,7 @@
             vm.users = MainSvc.loginWithFacebook();
         };
 
+
         vm.currentUser = function () {
             MainSvc.currentUserName();
         };
@@ -27,7 +28,6 @@
         vm.getUsers = function () {
             vm.users = MainSvc.getUsers();
         };
-        vm.getUsers();
 
         vm.addFavor = function (favorTitle, favorContent) {
             vm.favor = {
@@ -40,6 +40,8 @@
             console.log(vm.favor);
             vm.favors.$add(vm.favor);
         };
+
+        vm.getUsers();
 
         $('.favor').click(function () {
             // initialize all modals
@@ -67,7 +69,7 @@
             .dropdown()
         ;
 
-        $('#newsCommentIcon').click(function () {
+        $('.reply').click(function () {
             $('#comment')
                 .modal('show')
             ;
@@ -82,5 +84,8 @@
                 .modal('show')
             ;
         });
+        $('.ui.accordion')
+            .accordion()
+        ;
     }
 })();

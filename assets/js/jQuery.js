@@ -57,7 +57,7 @@ $(document).ready(function(){
         .dropdown()
     ;
 
-    $('#newsCommentIcon').on('click',function () {
+    $('#messageIcon').on('click',function () {
         $('#comment')
             .modal('show')
         ;

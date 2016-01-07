@@ -30,15 +30,24 @@
         var currentUser = null;
         var ref = new Firebase(fb.url);
         ref.onAuth(function (user) {
-            currentUser = user;
+            if(user) {
+                currentUser = user;
+                this.currentUserName = currentUser.facebook.displayName;
+            } else {
+                console.log('user got blank');
+            }
         });
-
-        this.currentUserName = currentUser.facebook.displayName;
 
         //getting current user info
         this.getUsers = function () {
-            var ref = new Firebase(fb.url+'/users/'+currentUser.uid);
-            return $firebaseObject(ref);
+            if(currentUser) {
+                console.log('Got User: ',  currentUser);
+                var ref = new Firebase(fb.url+'/users/'+currentUser.uid);
+                return $firebaseObject(ref);
+            } else {
+                console.log('No Current User');
+                return null;
+            }
         };
 
         ////logout the user
