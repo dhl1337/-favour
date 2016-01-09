@@ -21,18 +21,18 @@ $(document).ready(function(){
         $(this).addClass('active');
     });
 
-    $('.favor').click(function () {
+    $('#pencilIcon').click(function () {
         // initialize all modals
         $('.coupled.modal')
             .modal({
                 allowMultiple: true
             })
         ;
-// open second modal on first modal buttons
+        // open second modal on first modal buttons
         $('#preview')
             .modal('attach events', '.favorQues.modal .button')
         ;
-// show first immediately
+        // show first immediately
         $('#favorQuest')
             .modal('show')
         ;
@@ -57,9 +57,11 @@ $(document).ready(function(){
         .dropdown()
     ;
 
-    $('#messageIcon').on('click',function () {
+    $('#messageFavour').click(function () {
+        console.log('hello');
         $('#comment')
             .modal('show')
         ;
     });
+
 });

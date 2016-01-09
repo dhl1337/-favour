@@ -19,9 +19,7 @@
                                     <div class="meta">
                                         <span class="date">Joined in 2013</span>
                                     </div>
-                                    <div class="description">
-                                        love to help others
-                                    </div>
+                                    <div class="description">love to help others</div>
                                 </div>
                                 <div class="extra content">
                                     <div class="ui three mini statistics" id="statistics">
@@ -40,30 +38,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--<img class="ui small rounded image" ng-src="{{mainCtrl.users.image}}">-->
-                            <!--<h3>{{mainCtrl.users.name}}</h3>-->
-                            <!--<div class="ui three mini statistics" id="statistics">-->
-                                <!--<div class="statistic">-->
-                                    <!--<div class="label">FAVORS</div>-->
-                                    <!--<div class="value">{{mainCtrl.favors.length}}</div>-->
-                                <!--</div>-->
-                                <!--<div class="statistic">-->
-                                    <!--<div class="label">FOLLOW</div>-->
-                                    <!--<div class="value">324</div>-->
-                                <!--</div>-->
-                                <!--<div class="statistic">-->
-                                    <!--<div class="label">FOLLOWERS</div>-->
-                                    <!--<div class="value">22</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
                         </div>
                     </div>
 
                     <div class="ui card">
                         <div class="content">
-                            <div class="ui list">
-                                <div class="favor" id="pencilIcon" style="font-size: 20px"><i class="write icon"></i> Post a favour</div>
-                                <div class="message" id="messageIcon" style="font-size: 20px"><i class="mail outline icon"></i>  Messages</div>
+                            <div id="pencilIcon" style="font-size: 20px" ng-click="mainCtrl.postMessageFavour()">
+                                <i class="write icon"></i> Post a favour
                             </div>
                         </div>
                     </div>
@@ -93,7 +74,7 @@
                         <div class="content">
                             <div class="ui center card" id="previewModal">
                                 <div class="content">
-                                    <img class="ui avatar image" ng-src="{{mainCtrl.users.image}}"> <a href="/#/profile">{{mainCtrl.users.name}}</a>
+                                    <img class="ui avatar image" ng-src="{{mainCtrl.user.image}}"> <a href="/#/profile">{{mainCtrl.user.name}}</a>
                                     <div class="right floated meta">14h</div>
                                 </div>
                                 <div class="content">
@@ -103,10 +84,33 @@
                                     </div>
                                 </div>
                                 <div class="extra content">
-                                    <div class="ui large transparent left icon input">
-                                        <div class="ui button"><i class="fa fa-comments-o"></i></div>
+                                    <div class="actions">
+                                    <span class="left floated like">
+                                    <i class="mail outline icon"></i>
+                                    <div class="ui rating" data-max-rating="1">
+                                        <i class="empty star icon"></i>
                                     </div>
-                                    <i class="right floated star icon"></i>
+                                </span>
+                                <span class="right floated star">
+                                    <div class="ui right pointing dropdown">
+                                        <i class="edit icon"></i>
+                                        <div class="menu">
+                                            <div class="item">
+                                                <i class="remove icon"></i>
+                                                Delete
+                                            </div>
+                                            <div class="item">
+                                                <i class="edit icon"></i>
+                                                Edit
+                                            </div>
+                                            <div class="item">
+                                                <i class="hide icon"></i>
+                                                Hide
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -142,21 +146,14 @@
                     <i class="dropdown icon"></i>
                     <div class="menu" tabindex="-1">
                         <div class="item active" data-text="all the favours" ng-click="myFavor={}">Favour</div>
-                        <div class="item" data-text="my favours" ng-click="myFavor={name: mainCtrl.users.name}">My Favour</div>
+                        <div class="item" data-text="my favours" ng-click="myFavor={name: mainCtrl.user.name}">My Favour</div>
                         <div class="item" data-text="my favorite favours">Favorite Favour</div>
                         <div class="item" data-text="top favours">Top Favour</div>
                     </div>
                 </div>
 
-                <!--<div class="ui tabular menu">-->
-                    <!--<a class="active item" ng-click="myFavor={}">Favours</a>-->
-                    <!--<a class="item" ng-click="myFavor={name: mainCtrl.currentUser}">My favours</a>-->
-                    <!--<a class="item">Favorite Favors</a>-->
-                    <!--<a class="item">Top Favors</a>-->
-                <!--</div>-->
-
                 <div class="newsFeed"> 
-                    <div class="ui centered card" id="newCard" ng-repeat="favor in mainCtrl.favors | filter:myFavor | orderBy:'-date'">
+                    <div class="ui centered card" id="newCard" ng-repeat="favor in mainCtrl.favors | filter:myFavor | orderBy:'-date' ">
                         <div class="content">
                             <img class="ui avatar image" ng-src="{{favor.image}}"> <a href="/#/profile">{{favor.name}}</a>
                             <div class="right floated meta">{{favor.date|date:'short'}}</div>
@@ -172,9 +169,31 @@
                         </div>
                         <div class="extra content">
                             <div class="actions">
-                                <i class="reply icon"></i>
-                                <i class="empty star icon"></i>
-                                <i class="edit icon"></i>
+                                <span class="left floated like">
+                                    <i class="mail outline icon" id="messageFavour" ng-click="mainCtrl.openCommmentModal()"></i>
+                                    <div class="ui rating" data-max-rating="1" ng-hide="favor.isStar">
+                                        <i class="empty star icon" id="favoriteFavour" ng-click="mainCtrl.activeFavorite(favor.$id)"></i>
+                                    </div>
+                                </span>
+                                <span class="right floated star">
+                                    <div class="ui right pointing dropdown" ng-click="mainCtrl.click()">
+                                        <i class="edit icon"></i>
+                                        <div class="menu">
+                                            <div class="item" id="deleteFavour">
+                                                <i class="remove icon"></i>
+                                                Delete
+                                            </div>
+                                            <div class="item">
+                                                <i class="edit icon" id="editFavour"></i>
+                                                Edit
+                                            </div>
+                                            <div class="item">
+                                                <i class="hide icon"></i>
+                                                Hide
+                                            </div>
+                                        </div>
+                                    </div>
+                                </span>
                             </div>
                         </div>
                         <div class="ui modal" id="comment">

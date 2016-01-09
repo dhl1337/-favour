@@ -1,4 +1,3 @@
-
 #page1 {
     background: url("https://images.unsplash.com/photo-1417551047620-471daaad5a65?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=e778f279618432c687b18697b11a398f") no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -162,6 +161,16 @@ strong {
     margin-top: 10px;
     margin-bottom: 50px;
     text-align: center;
+}
+.ui.accordion .title:not(.ui) {
+    color: orange;
+}
+#favoriteFavour.empty.star.icon {
+    color: orange;
+}
+
+#deleteFavour {
+    color: red;
 }
 
 

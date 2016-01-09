@@ -57,6 +57,12 @@
             return usersArr;
         };
 
+        this.favoriteFavors = function () {
+            var ref = new Firebase(fb.url+'/users/'+currentUser.uid+'/favorites');
+            var favsArr = $firebaseArray(ref);
+            return favsArr;
+        };
+
         ////logout the user
         this.logout = function () {
             var ref = new Firebase (fb.url);

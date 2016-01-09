@@ -12,6 +12,7 @@
 
         vm.login = function () {
             vm.user = MainSvc.loginWithFacebook();
+
         };
 
 
@@ -25,14 +26,25 @@
 
         vm.users = MainSvc.getUsers();
 
+        vm.getUser = function () {
+            vm.user = MainSvc.getUser();
+            console.log(vm.user)
+        };
+        vm.getUser();
+
         vm.getFavors = function () {
             vm.favors = MainSvc.getFavors();
+            for (var i = 0; i < vm.favors.length; i++) {
+                if (vm.user.favorites.indexOf(vm.favors[i]) !== -1) {
+                    vm.favors[i].isStar = true;
+                } else {
+                    vm.favors[i].isStar = false;
+                }
+            }
         };
         vm.getFavors();
 
-        vm.getUser = function () {
-            vm.user = MainSvc.getUser();
-        };
+
 
         vm.addFavor = function (favorTitle, favorContent) {
             vm.favor = {
@@ -42,11 +54,60 @@
                 favorContent: favorContent,
                 date: Firebase.ServerValue.TIMESTAMP
             };
-            console.log(vm.favor);
             vm.favors.$add(vm.favor);
         };
 
-        vm.getUser();
+
+        vm.activeFavorite = function (id) {
+            console.log(id);
+            vm.favorites = MainSvc.favoriteFavors();
+            if (vm.favorites.indexOf(id) === -1) {
+                vm.favorites.$add(id);
+            }
+
+            $('.ui.rating')
+                .rating(
+                    'setting', 'clearable', true
+                )
+            ;
+        };
+        vm.openCommmentModal = function () {
+                $('#comment')
+                    .modal('show');
+        };
+
+        vm.click = function () {
+            $('.ui.right.pointing.dropdown')
+                .dropdown()
+            ;
+        };
+
+        vm.postMessageFavour = function () {
+            $('.coupled.modal')
+                .modal({
+                    allowMultiple: true
+                })
+            ;
+            // open second modal on first modal buttons
+            $('#preview')
+                .modal('attach events', '#favorQuest .button')
+            ;
+            // show first immediately
+            $('#favorQuest')
+                .modal('show')
+            ;
+            $('#preview .ui.negative.button').on('click', function(){
+                $('#preview')
+                    .modal('show')
+                ;
+            })
+        };
+
+
+        $('.ui .item').on('click', function() {
+            $('.ui .item').removeClass('active');
+            $(this).addClass('active');
+        });
 
         $('.favor').click(function () {
             // initialize all modals
@@ -70,22 +131,15 @@
             })
         });
 
+        $('.ui.rating')
+            .rating('disable')
+        ;
         $('.ui.dropdown')
             .dropdown()
         ;
 
-        $('.reply').click(function () {
-            $('#comment')
-                .modal('show')
-            ;
-        });
-
-        $('.ui.rating')
-            .rating('disable')
-        ;
-
         $('#SignInBtn').click(function(){
-            $('#modeldiv')
+            $('.ui.modal')
                 .modal('show')
             ;
         });
