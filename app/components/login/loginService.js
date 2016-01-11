@@ -5,9 +5,9 @@
     'use strict';
     angular
         .module('favourApp')
-        .service('LoginService', ['$firebaseAuth', '$location', '$window', 'fb', LoginService]);
+        .service('loginService', ['$firebaseAuth', '$location', '$window', 'fb', loginService]);
 
-    function LoginService ($firebaseAuth, $location, $window, fb) {
+    function loginService ($firebaseAuth, $location, $window, fb) {
 
         //login with facebook
         this.loginWithFacebook = function () {

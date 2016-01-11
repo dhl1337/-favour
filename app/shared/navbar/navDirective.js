@@ -17,17 +17,17 @@
         return directive;
     }
 
-    function NavController (LoginService, MainSvc) {
+    function NavController (loginService, MainService) {
         var vm = this;
 
         vm.logout = logout;
-        vm.currentUser = MainSvc.currentUser();
+        vm.currentUser = MainService.currentUser();
 
 
 
         //console.log(vm.userId);
         function logout () {
-            LoginService.logout();
+            loginService.logout();
         };
 
     }

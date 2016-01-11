@@ -34,8 +34,8 @@
                     </div>
                 </div>
             </div>
-            <div class="eight wide column" ng-controller="MainCtrl as mainCtrl">
-                <div class="favours feed" ng-repeat="favor in mainCtrl.favors | filter: profileCtrl.user.name | orderBy:'-date'">
+            <div class="eight wide column" ng-controller="MainController as main">
+                <div class="favours feed" ng-repeat="favor in main.favors | filter: profileCtrl.user.name | orderBy:'-date'">
                     <div class="ui centered card" id="newCard">
                         <div class="content">
                             <img class="ui avatar image" ng-src="{{favor.image}}"> <a ui-sref="profile({userId:favor.uid})">{{favor.name}}</a>
@@ -55,14 +55,14 @@
                                 <span class="left floated like">
                                     <i class="mail outline icon" id="messageFavour"></i>
                                     <div class="ui rating" data-max-rating="1" ng-hide="favor.isStar">
-                                        <i class="star icon"ng-class = "{active:favor.favorited}" id="favoriteFavour" ng-click="mainCtrl.addFavoriteFvr(favor)"></i>
+                                        <i class="star icon"ng-class = "{active:favor.favorited}" id="favoriteFavour" ng-click="main.addFavoriteFvr(favor)"></i>
                                     </div>
                                 </span>
                                 <span class="right floated">
-                                    <div class="ui right pointing dropdown" ng-if="mainCtrl.currUser.uid == favor.uid" ng-click="mainCtrl.dropDownEdit()">
+                                    <div class="ui right pointing dropdown" ng-if="main.currUser.uid == favor.uid" ng-click="main.dropDownEdit()">
                                         <i class="edit icon"></i>
                                         <div class="menu">
-                                            <div class="item" id="deleteFavour"  ng-click="mainCtrl.favors.$remove(favor)">
+                                            <div class="item" id="deleteFavour"  ng-click="main.favors.$remove(favor)">
                                                 <i class="remove icon"></i>
                                                 Delete
                                             </div>
@@ -72,7 +72,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="item" ng-if="mainCtrl.currUser.uid !== favor.uid">
+                                    <div class="item" ng-if="main.currUser.uid !== favor.uid">
                                         <i class="hide icon"></i>
 
                                     </div>

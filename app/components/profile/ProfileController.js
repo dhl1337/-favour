@@ -4,12 +4,12 @@
 (function () {
     angular
         .module('favourApp')
-        .controller('ProfileController', ['MainSvc','$stateParams',ProfileController]);
+        .controller('ProfileController', ['MainService','$stateParams',ProfileController]);
 
-    function ProfileController (MainSvc, $stateParams) {
+    function ProfileController (MainService, $stateParams) {
         var vm = this;
         var currentUserId = $stateParams.userId;
-        vm.user = MainSvc.getUser(currentUserId);
+        vm.user = MainService.getUser(currentUserId);
 
         $('.ui.rating')
             .rating('disable')

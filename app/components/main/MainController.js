@@ -5,9 +5,9 @@
     'use strict';
     angular
         .module('favourApp')
-        .controller('MainCtrl',['MainSvc', '$stateParams', MainCtrl]);
+        .controller('MainController',['MainService', '$stateParams', MainController]);
 
-    function MainCtrl (MainSvc) {
+    function MainController (MainService) {
 
         var vm = this;
 
@@ -19,18 +19,18 @@
         vm.postModal = postModal;
         vm.addFavor = addFavor;
 
-        vm.favs = MainSvc.addFavoriteFavors();
-        vm.users = MainSvc.getUsers();
+        vm.favs = MainService.addFavoriteFavors();
+        vm.users = MainService.getUsers();
 
 
         function currentUser () {
-            vm.currUser = MainSvc.currentUser();
+            vm.currUser = MainService.currentUser();
         }
         currentUser();
 
 
         function getFavors () {
-            vm.favors = MainSvc.getFavors();
+            vm.favors = MainService.getFavors();
             vm.favors.$loaded(function(){
                 for (var i = 0; i < vm.favors.length; i++) {
                     for (var j=0;j<vm.favs.length;j++) {
@@ -53,7 +53,7 @@
                 favorContent: favorContent,
                 date: Firebase.ServerValue.TIMESTAMP
             };
-            MainSvc.addFavor(favor);
+            MainService.addFavor(favor);
             console.log('hello');
         }
 
@@ -72,7 +72,6 @@
 
             }
         }
-
         function dropDownEdit () {
             $('.ui.right.pointing.dropdown')
                 .dropdown()
@@ -103,10 +102,5 @@
                 ;
             })
         }
-
-
-
-
-
     }
 })();

@@ -5,9 +5,9 @@
     'use strict';
     angular
         .module('favourApp')
-        .service('MainSvc', ['$firebaseObject', '$firebaseArray', 'fb', MainSvc]);
+        .service('MainService', ['$firebaseObject', '$firebaseArray', 'fb', MainService]);
 
-    function MainSvc ($firebaseObject, $firebaseArray, fb) {
+    function MainService ($firebaseObject, $firebaseArray, fb) {
 
         var ref = new Firebase (fb.url);
         var events = $firebaseArray(ref);
