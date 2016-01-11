@@ -2,46 +2,32 @@
  * Created by danle on 1/5/16.
  */
 (function () {
+    'use strict';
     angular
         .module('app')
-        .service('MainSvc', ['$firebaseObject', '$firebaseArray', '$firebaseAuth', 'fb','$location','$window', MainSvc]);
+        .service('MainSvc', ['$firebaseObject', '$firebaseArray', 'fb', MainSvc]);
 
-    function MainSvc ($firebaseObject, $firebaseArray, $firebaseAuth, fb, $location, $window) {
+    function MainSvc ($firebaseObject, $firebaseArray, fb) {
 
-        //login with facebook
-        this.loginWithFacebook = function () {
-            var ref = new Firebase (fb.url);
-            var authObj = $firebaseAuth(ref);
-
-            authObj.$authWithOAuthPopup("facebook")
-                .then(function(authData) {
-                    ref.child('users').child(authData.uid).set({
-                       uid: authData.uid,
-                        name: authData.facebook.displayName,
-                        image: authData.facebook.profileImageURL
-                    });
-                    $window.location.href="/#/main";
-            })
-                .catch(function(error) {
-                console.error("Authentication failed:", error);
-            });
-        };
+        var ref = new Firebase (fb.url);
+        var events = $firebaseArray(ref);
+        //console.log(events);
 
         var currentUser = null;
         var ref = new Firebase(fb.url);
         ref.onAuth(function (user) {
             if(user) {
+                //console.log('hello');
                 currentUser = user;
-                this.currentUserName = currentUser.facebook.displayName;
             } else {
                 console.log('user got blank');
             }
         });
 
         //getting current user info
-        this.getUser = function () {
+        this.currentUser = function () {
             if(currentUser) {
-                console.log('Got User: ',  currentUser);
+                //console.log('Got User: ',  currentUser);
                 var ref = new Firebase(fb.url+'/users/'+currentUser.uid);
                 return $firebaseObject(ref);
             } else {
@@ -57,24 +43,37 @@
             return usersArr;
         };
 
-        this.favoriteFavors = function () {
-            var ref = new Firebase(fb.url+'/users/'+currentUser.uid+'/favorites');
-            var favsArr = $firebaseArray(ref);
-            return favsArr;
+        this.getUser = function (userId) {
+            var ref = new Firebase (fb.url + '/users/' + userId);
+            return $firebaseObject(ref);
         };
 
-        ////logout the user
-        this.logout = function () {
-            var ref = new Firebase (fb.url);
-            ref.unauth();
-            $location.path('/home');
-        };
 
         this.getFavors = function() {
             var ref = new Firebase(fb.url+'/favor/');
             var favorArr = $firebaseArray(ref);
             return favorArr;
         };
+
+
+
+        this.addFavoriteFavors = function () {
+            var ref = new Firebase(fb.url+'/favorites/'+currentUser.uid);
+            var favsArr = $firebaseArray(ref);
+            return favsArr;
+        };
+
+        this.addFavor = function (newfavor) {
+            var ref = new Firebase(fb.url+'/favor');
+            var favArr = $firebaseArray(ref);
+            favArr.$add(newfavor);
+        };
+
+        //this.deleteFavor = function (id) {
+        //    var ref = new Firebase(fb.url+'/favor');
+        //    var favArr = $firebaseArray(ref);
+        //    favArr.$remove(id);
+        //};
 
     }
 })();

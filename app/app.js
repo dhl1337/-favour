@@ -14,20 +14,23 @@
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: 'partials/home.html'
+                templateUrl: '../app/login/home.html',
+                controller: 'LoginController',
+                controllerAs: 'loginCtrl'
             })
             .state('main', {
                 url: '/main',
-                templateUrl: 'partials/main.html',
-                controller:'MainCtrl',
+                templateUrl: 'partials/main.html'
             })
             .state('register', {
                 url: '/register',
-                templateUrl: 'partials/reigster.html'
+                templateUrl: 'partials/register.html'
             })
             .state('profile', {
-                url: '/profile',
-                templateUrl: 'partials/profile.html'
+                url: '/profile/:userId',
+                templateUrl: 'partials/profile.html',
+                controller: 'ProfileController',
+                controllerAs: 'profileCtrl'
             });
         $urlRouterProvider.otherwise('/home');
     }

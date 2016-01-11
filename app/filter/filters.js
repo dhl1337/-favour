@@ -8,11 +8,9 @@
 
     function favorFilter () {
         return function (favoriteFavor) {
-            for (var i = 0; i < favoriteFavor.length; i++) {
-                if (!favoriteFavor[i]) {
-                    console.log('hello');
-                }
-            }
+            return favoriteFavor.filter(function (currUserId) {
+                return currUserId;
+            });
         };
     }
 

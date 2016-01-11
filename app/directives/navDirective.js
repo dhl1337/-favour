@@ -1,7 +1,8 @@
 /**
- * Created by danle on 1/5/16.
+ * Created by danle on 1/9/16.
  */
 (function () {
+    'use strict';
     angular
         .module('app')
         .directive('navBar', navBar);
@@ -11,28 +12,29 @@
             templateUrl: '../app/view/nav-partialView.html',
             controller: NavController,
             controllerAs: 'navCtrl',
-            link: link,
             bindToController: true
         };
         return directive;
     }
 
-    function link (scope, element, attribute) {
-        element.find('.ui .item').on('click', function () {
-            angular.element('.ui .item')
-                .removeClass('active');
-            angular.element(this)
-                .addClass('active');
-        })
-    }
-
-    function NavController (MainSvc) {
+    function NavController (LoginService) {
         var vm = this;
+        vm.logout = logout;
+        vm.activeNavItem = activeNavItem;
 
-        vm.logout = function () {
-            MainSvc.logout();
+        function logout () {
+            LoginService.logout();
         };
 
+        function activeNavItem () {
+            $('.ui .item').removeClass('active');
+            $(this).addClass('active');
+        };
+
+        $('.ui .item').on('click', function() {
+            $('.ui .item').removeClass('active');
+            $(this).addClass('active');
+        });
         //$('.ui .item').on('click', function() {
         //    $('.ui .item').removeClass('active');
         //    $(this).addClass('active');

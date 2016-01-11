@@ -7,82 +7,98 @@
         .module('app')
         .controller('MainCtrl',['MainSvc', '$stateParams', MainCtrl]);
 
-    function MainCtrl (MainSvc, $stateParams) {
+    function MainCtrl (MainSvc) {
+
         var vm = this;
 
-        vm.login = function () {
-            vm.user = MainSvc.loginWithFacebook();
+        vm.currentUser = currentUser;
+        vm.getFavors = getFavors;
+        //vm.getUser = getUser;
+        vm.addFavoriteFvr = addFavoriteFvr;
+        vm.dropDownFilter = dropDownFilter;
+        vm.dropDownEdit = dropDownEdit;
+        vm.postModal = postModal;
+        vm.addFavor = addFavor;
+        vm.favs = MainSvc.addFavoriteFavors();
 
-        };
 
-
-        vm.currentUser = function () {
-            MainSvc.currentUserName();
-        };
-
-        vm.currentUsers = function () {
-            vm.user = MainSvc.getUser();
-        };
+        //function getUser () {
+            //var currentUserId = $stateParams.userId;
+            //vm.user = MainSvc.getUser(currentUserId);
+        //}
+        function currentUser () {
+            vm.currUser = MainSvc.currentUser();
+        }
+        currentUser();
 
         vm.users = MainSvc.getUsers();
+        //console.log(vm.users);
 
-        vm.getUser = function () {
-            vm.user = MainSvc.getUser();
-            console.log(vm.user)
-        };
-        vm.getUser();
 
-        vm.getFavors = function () {
+        function getFavors () {
             vm.favors = MainSvc.getFavors();
-            for (var i = 0; i < vm.favors.length; i++) {
-                if (vm.user.favorites.indexOf(vm.favors[i]) !== -1) {
-                    vm.favors[i].isStar = true;
-                } else {
-                    vm.favors[i].isStar = false;
+            vm.favors.$loaded(function(){
+                for (var i = 0; i < vm.favors.length; i++) {
+                    for (var j=0;j<vm.favs.length;j++) {
+                        if (vm.favs[j].$value == vm.favors[i].$id) {
+                            vm.favors[i].favorited = true;
+                        }
+                    }
                 }
-            }
-        };
-        vm.getFavors();
+            })
 
+        }
+        getFavors();
 
-
-        vm.addFavor = function (favorTitle, favorContent) {
-            vm.favor = {
-                name: vm.user.name,
-                image: vm.user.image,
+        function addFavor (favorTitle, favorContent) {
+            var favor = {
+                uid: vm.currUser.uid,
+                name: vm.currUser.name,
+                image: vm.currUser.image,
                 favorTitle: favorTitle,
                 favorContent: favorContent,
                 date: Firebase.ServerValue.TIMESTAMP
             };
-            vm.favors.$add(vm.favor);
-        };
+            MainSvc.addFavor(favor);
+            console.log('hello');
+        }
 
+        var hasFavorite = false;
+        function addFavoriteFvr (favor) {
+            //console.log(vm.favs);
+            if (!favor.favorited) {
+                favor.favorited = true;
+                vm.favs.$add(favor.$id);
+            } else {
+                favor.favorited = false;
+                for (var i=0;i<vm.favs.length;i++){
+                    if (vm.favs[i].$value == favor.$id){
+                        vm.favs.$remove(i);
+                    }
+                }
 
-        vm.activeFavorite = function (id) {
-            console.log(id);
-            vm.favorites = MainSvc.favoriteFavors();
-            if (vm.favorites.indexOf(id) === -1) {
-                vm.favorites.$add(id);
             }
 
-            $('.ui.rating')
-                .rating(
-                    'setting', 'clearable', true
-                )
-            ;
-        };
-        vm.openCommmentModal = function () {
-                $('#comment')
-                    .modal('show');
-        };
+            //console.log(id);
+            //vm.favorites = MainSvc.addFavoriteFavors();
+            //if (vm.favorites.indexOf(id) === -1) {
+            //    vm.favorites.$add(id);
+            //}
+        }
 
-        vm.click = function () {
+
+
+        function dropDownEdit () {
             $('.ui.right.pointing.dropdown')
                 .dropdown()
             ;
-        };
-
-        vm.postMessageFavour = function () {
+        }
+        function dropDownFilter () {
+            $('.ui.dropdown')
+                .dropdown()
+            ;
+        }
+        function postModal () {
             $('.coupled.modal')
                 .modal({
                     allowMultiple: true
@@ -101,7 +117,19 @@
                     .modal('show')
                 ;
             })
-        };
+        }
+
+
+        //vm.tru = function () {
+        //    for (var i = 0; i < vm.users.length; i++) {
+        //        console.log(vm.users[i].name);
+        //    }
+        //    //if (vm.currUser === vm.users.name) {
+        //    //    return true;
+        //    //} else {
+        //    //    return false;
+        //    //}
+        //};
 
 
         $('.ui .item').on('click', function() {
@@ -109,42 +137,10 @@
             $(this).addClass('active');
         });
 
-        $('.favor').click(function () {
-            // initialize all modals
-            $('.coupled.modal')
-                .modal({
-                    allowMultiple: true
-                })
-            ;
-            // open second modal on first modal buttons
-            $('#preview')
-                .modal('attach events', '#favorQuest .button')
-            ;
-            // show first immediately
-            $('#favorQuest')
-                .modal('show')
-            ;
-            $('#preview .ui.negative.button').on('click', function(){
-                $('#preview')
-                    .modal('show')
-                ;
-            })
-        });
 
         $('.ui.rating')
             .rating('disable')
         ;
-        $('.ui.dropdown')
-            .dropdown()
-        ;
 
-        $('#SignInBtn').click(function(){
-            $('.ui.modal')
-                .modal('show')
-            ;
-        });
-        $('.ui.accordion')
-            .accordion()
-        ;
     }
 })();

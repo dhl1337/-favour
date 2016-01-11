@@ -21,47 +21,8 @@ $(document).ready(function(){
         $(this).addClass('active');
     });
 
-    $('#pencilIcon').click(function () {
-        // initialize all modals
-        $('.coupled.modal')
-            .modal({
-                allowMultiple: true
-            })
-        ;
-        // open second modal on first modal buttons
-        $('#preview')
-            .modal('attach events', '.favorQues.modal .button')
-        ;
-        // show first immediately
-        $('#favorQuest')
-            .modal('show')
-        ;
-        $('#preview .ui.negative.button').on('click', function(){
-            $('#preview')
-                .modal('show')
-            ;
-        })
-    });
 
     $('.ui.rating')
         .rating('disable')
     ;
-
-    $('#SignInBtn').click(function(){
-        $('#modeldiv')
-            .modal('show')
-        ;
-    });
-
-    $('.ui.dropdown')
-        .dropdown()
-    ;
-
-    $('#messageFavour').click(function () {
-        console.log('hello');
-        $('#comment')
-            .modal('show')
-        ;
-    });
-
 });

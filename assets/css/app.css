@@ -72,7 +72,7 @@ strong {
     padding: 10px;
 }
 #navMenu .item.active {
-    border-bottom: 3px solid orange;
+    border-bottom: 3px solid black;
     background-color: transparent;
 }
 #homeIcon, #profileIcon, #navMessageIcon, #logoutIcon, #pencilIcon, #messageIcon {
@@ -147,9 +147,7 @@ strong {
     padding-left: 100px;
     padding-right: 300px;
 }
-#dividingHeader {
-    color: orange;
-}
+
 #registerBtn {
     margin-top: 30px;
     text-align: center;
@@ -162,12 +160,10 @@ strong {
     margin-bottom: 50px;
     text-align: center;
 }
-.ui.accordion .title:not(.ui) {
+.ui.accordion .title:not(.ui), #favoriteFavour.star.icon::before, #dividingHeader {
     color: orange;
 }
-#favoriteFavour.empty.star.icon {
-    color: orange;
-}
+
 
 #deleteFavour {
     color: red;
