@@ -17,27 +17,18 @@
         return directive;
     }
 
-    function NavController (LoginService) {
+    function NavController (LoginService, MainSvc) {
         var vm = this;
-        vm.logout = logout;
-        vm.activeNavItem = activeNavItem;
 
+        vm.logout = logout;
+        vm.currentUser = MainSvc.currentUser();
+
+
+
+        //console.log(vm.userId);
         function logout () {
             LoginService.logout();
         };
 
-        function activeNavItem () {
-            $('.ui .item').removeClass('active');
-            $(this).addClass('active');
-        };
-
-        $('.ui .item').on('click', function() {
-            $('.ui .item').removeClass('active');
-            $(this).addClass('active');
-        });
-        //$('.ui .item').on('click', function() {
-        //    $('.ui .item').removeClass('active');
-        //    $(this).addClass('active');
-        //});
     }
 })();

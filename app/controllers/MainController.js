@@ -13,26 +13,20 @@
 
         vm.currentUser = currentUser;
         vm.getFavors = getFavors;
-        //vm.getUser = getUser;
         vm.addFavoriteFvr = addFavoriteFvr;
         vm.dropDownFilter = dropDownFilter;
         vm.dropDownEdit = dropDownEdit;
         vm.postModal = postModal;
         vm.addFavor = addFavor;
+
         vm.favs = MainSvc.addFavoriteFavors();
+        vm.users = MainSvc.getUsers();
 
 
-        //function getUser () {
-            //var currentUserId = $stateParams.userId;
-            //vm.user = MainSvc.getUser(currentUserId);
-        //}
         function currentUser () {
             vm.currUser = MainSvc.currentUser();
         }
         currentUser();
-
-        vm.users = MainSvc.getUsers();
-        //console.log(vm.users);
 
 
         function getFavors () {
@@ -63,7 +57,6 @@
             console.log('hello');
         }
 
-        var hasFavorite = false;
         function addFavoriteFvr (favor) {
             //console.log(vm.favs);
             if (!favor.favorited) {
@@ -78,12 +71,6 @@
                 }
 
             }
-
-            //console.log(id);
-            //vm.favorites = MainSvc.addFavoriteFavors();
-            //if (vm.favorites.indexOf(id) === -1) {
-            //    vm.favorites.$add(id);
-            //}
         }
 
 
@@ -120,16 +107,6 @@
         }
 
 
-        //vm.tru = function () {
-        //    for (var i = 0; i < vm.users.length; i++) {
-        //        console.log(vm.users[i].name);
-        //    }
-        //    //if (vm.currUser === vm.users.name) {
-        //    //    return true;
-        //    //} else {
-        //    //    return false;
-        //    //}
-        //};
 
 
         $('.ui .item').on('click', function() {

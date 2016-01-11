@@ -3,7 +3,7 @@
 
 
 <!-- MAIN CONTENT -->
-<div class ="fakebackground" ng-controller="MainCtrl as mainCtrl">
+<div class ="fakebackground">
     <div class="ui container" id="container">
         <div class="ui grid">
 
@@ -137,7 +137,6 @@
             </div>
 
             <div class="seven wide column">
-
                 <label>Show me</label>
                 <div class="ui inline dropdown" tabindex="0" style="color: orange" ng-click="mainCtrl.dropDownFilter()">
                     <div class="text">today</div>
@@ -150,9 +149,9 @@
                     </div>
                 </div>
                 <div class="newsFeed" ng-repeat="favor in mainCtrl.favors | filter:myFavor | orderBy:'-date'"> 
-                <div class="ui centered card" id="newCard">
+                    <div class="ui centered card" id="newCard">
                     <div class="content">
-                        <img class="ui avatar image" ng-src="{{favor.image}}"> <a ui-sref="profile({userId:favor.$id})">{{favor.name}}</a>
+                        <img class="ui avatar image" ng-src="{{favor.image}}"> <a ui-sref="profile({userId:favor.uid})">{{favor.name}}</a>
                         <div class="right floated meta">{{favor.date|date:'short'}}</div>
                     </div>
                     <div class="content">
@@ -213,7 +212,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+                </div> 
             </div>
 
             <div class="five wide column">

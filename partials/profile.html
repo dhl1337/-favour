@@ -2,8 +2,7 @@
 <nav-bar></nav-bar>
 <!-- MAIN CONTENT -->
 <div class="fakebackground">
-    <div class="ui container" id="profileContainer">
-        {{profileCtrl.user.name}}
+    <div class="ui container" id="container">
         <div class="ui grid">
             <div class="four wide column">
                 <div class="proile">
@@ -35,84 +34,110 @@
                     </div>
                 </div>
             </div>
-            <div class="eight wide column">
+            <div class="eight wide column" ng-controller="MainCtrl as mainCtrl">
+                <div class="favours feed" ng-repeat="favor in mainCtrl.favors | filter: profileCtrl.user.name | orderBy:'-date'">
+                    <div class="ui centered card" id="newCard">
+                        <div class="content">
+                            <img class="ui avatar image" ng-src="{{favor.image}}"> <a ui-sref="profile({userId:favor.uid})">{{favor.name}}</a>
+                            <div class="right floated meta">{{favor.date|date:'short'}}</div>
+                        </div>
+                        <div class="content">
+                            <div class="header">{{favor.favorTitle}}</div>
+                            <div class="meta">
+                                <span class="category">{{favor.favor}}</span>
+                            </div>
+                            <div class="description">
+                                <p>{{favor.favorContent}}</p>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <div class="actions">
+                                <span class="left floated like">
+                                    <i class="mail outline icon" id="messageFavour"></i>
+                                    <div class="ui rating" data-max-rating="1" ng-hide="favor.isStar">
+                                        <i class="star icon"ng-class = "{active:favor.favorited}" id="favoriteFavour" ng-click="mainCtrl.addFavoriteFvr(favor)"></i>
+                                    </div>
+                                </span>
+                                <span class="right floated">
+                                    <div class="ui right pointing dropdown" ng-if="mainCtrl.currUser.uid == favor.uid" ng-click="mainCtrl.dropDownEdit()">
+                                        <i class="edit icon"></i>
+                                        <div class="menu">
+                                            <div class="item" id="deleteFavour"  ng-click="mainCtrl.favors.$remove(favor)">
+                                                <i class="remove icon"></i>
+                                                Delete
+                                            </div>
+                                            <div class="item">
+                                                <i class="edit icon" id="editFavour"></i>
+                                                Edit
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item" ng-if="mainCtrl.currUser.uid !== favor.uid">
+                                        <i class="hide icon"></i>
 
+                                    </div>
+
+                                </span>
+                            </div>
+                        </div>
+                        <div class="ui modal" id="comment">
+                            <div class="header">Message</div>
+                            <div class="content">
+                                <form class="ui form">
+                                    <div class="field">
+                                        <label>Title</label>
+                                        <input type="text" ng-model="previewFavor" required>
+                                    </div>
+                                    <div class="field">
+                                        <label>Favor</label>
+                                        <textarea ng-model="previewText" required></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="actions">
+                                <div class="ui button">Preview</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="four wide column"></div>
+            <div class="four wide column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header">Feedback ratings</div>
+                        <div class="ui list">
+                            <div class="item">
+                                <div class="ui star rating" data-rating="3"></div>
+                                <label>Communication</label>
+                            </div>
+                            <div class="item">
+                                <div class="ui star rating" data-rating="3"></div>
+                                <label>Communication</label>
+                            </div>
+                            <div class="item">
+                                <div class="ui star rating" data-rating="3"></div>
+                                <label>Communication</label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">Experience</div>
+                    <div class="ui list">
+                        <div class="item">
+                            <i class="smile icon" style="font-size: 40px"></i>
+                        </div>
+                        <div class="item">
+                            <i class="meh icon" style="font-size: 40px"></i>
+                        </div>
+                        <div class="item">
+                            <i class="frown icon" style="font-size: 40px"></i>
+                        </div>
+                </div>
+            </div>
+
         </div>
-
-
-
-
-        <!--<div class="profile">-->
-            <!--<div class="userInfo">-->
-                <!--<div class="ui relaxed divided items">-->
-                    <!--<div class="item">-->
-                        <!--<div class="ui small image">-->
-                            <!--<img class="ui top aligned small rounded image" ng-src="{{profile.user.image}}">-->
-                        <!--</div>-->
-                        <!--<div class="content">-->
-                            <!--<a class="header"><h3>{{profile.user.name}}</h3></a>-->
-                            <!--<div class="meta">-->
-                                <!--<a>Date</a>-->
-                                <!--<a>Category</a>-->
-                            <!--</div>-->
-                            <!--<div class="description">-->
-                                <!--<p> A description which may flow for several lines and give context to the content.</p>-->
-                            <!--</div>-->
-                            <!--<div class="extra">-->
-                                <!--<div class="ui right floated green button">-->
-                                    <!--<i class="add user icon"></i> Follow-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<br>-->
-            <!--<div class="ui three column grid" id="reviewColumn">-->
-                <!--<div class="column">-->
-                    <!--<h3>Feedback ratings</h3>-->
-                    <!--<div class="ui list">-->
-                        <!--<div class="item">-->
-                            <!--<div class="ui star rating" data-rating="3"></div>-->
-                            <!--<label>Communication</label>-->
-                        <!--</div>-->
-                        <!--<div class="item">-->
-                            <!--<div class="ui star rating" data-rating="3"></div>-->
-                            <!--<label>Communication</label>-->
-                        <!--</div>-->
-                        <!--<div class="item">-->
-                            <!--<div class="ui star rating" data-rating="3"></div>-->
-                            <!--<label>Communication</label>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                <!--</div>-->
-                <!--<div class="column" id="moods">-->
-                    <!--<div class="ui horizontal list">-->
-                        <!--<div class="item">-->
-                            <!--<i class="smile icon"> 3</i>-->
-                            <!--<label>Positive</label>-->
-                        <!--</div>-->
-                        <!--<div class="item">-->
-                            <!--<i class="meh icon"> 23</i>-->
-                            <!--<label>Neutral</label>-->
-                        <!--</div>-->
-                        <!--<div class="item">-->
-                            <!--<label>Negative</label>-->
-                            <!--<i class="frown icon"> 2</i>-->
-
-                        <!--</div>-->
-                    <!--</div>-->
-
-
-                <!--</div>-->
-                <!--<div class="column" ng-controller="MainCtrl as main">-->
-                    <!--<h3>feedback</h3>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
-
 </div>

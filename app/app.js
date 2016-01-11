@@ -20,7 +20,9 @@
             })
             .state('main', {
                 url: '/main',
-                templateUrl: 'partials/main.html'
+                templateUrl: 'partials/main.html',
+                controller: 'MainCtrl',
+                controllerAs: 'mainCtrl'
             })
             .state('register', {
                 url: '/register',

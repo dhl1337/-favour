@@ -1,8 +1,10 @@
-<div class="ui fixed stackable secondary menu" id="navMenu" ng-click="navCtrl.activeNavItem()">
+<div class="ui fixed stackable secondary menu" id="navMenu">
     <a class="item active" ui-sref="main" ui-sref-active="active"><i class="fa fa-home fa-lg" id="homeIcon"> Home</i></a>
-    <a class="item" ui-sref="profile" ui-sref-active="active"><i class="fa fa-user fa-lg" id="profileIcon"> Profile</i></a>
+    <a class="item" ui-sref="profile({userId: navCtrl.currentUser.$id})" ui-sref-active="active"><i class="fa fa-user fa-lg" id="profileIcon"> Profile</i></a>
     <a class="item" ui-sref="notification" ui-sref-active="active"><i class="fa fa-bell-o fa-lg" id="navMessageIcon"> Notifications</i></a>
     <div class="right menu">
         <a class="item" ng-click="navCtrl.logout()"><i class="fa fa-sign-out fa-lg" id="logoutIcon"> Logout</i></a>
     </div>
+
+
 </div>
