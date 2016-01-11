@@ -4,7 +4,7 @@
 (function () {
     'use strict';
     angular
-        .module('app')
+        .module('favourApp')
         .controller('LoginController', ['LoginService', LoginController]);
 
     function LoginController (LoginService) {

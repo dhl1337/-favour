@@ -4,12 +4,12 @@
 (function () {
     'use strict';
     angular
-        .module('app')
+        .module('favourApp')
         .directive('navBar', navBar);
 
     function navBar () {
         var directive = {
-            templateUrl: '../app/view/nav-partialView.html',
+            templateUrl: '../app/shared/navbar/navView.html',
             controller: NavController,
             controllerAs: 'navCtrl',
             bindToController: true

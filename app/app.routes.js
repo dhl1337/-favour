@@ -1,36 +1,33 @@
 /**
- * Created by danle on 1/3/16.
+ * Created by danle on 1/11/16.
  */
-(function(){
+(function () {
     'use strict';
     angular
-        .module('app', ['firebase', 'ui.router'])
-        .constant('fb', {
-            url: 'https://needsfavor.firebaseio.com'
-        })
-        .config(['$stateProvider','$urlRouterProvider', config]);
+        .module('favourApp')
+        .config(['$stateProvider','$urlRouterProvider',config]);
 
     function config ($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: '../app/login/home.html',
+                templateUrl: '../app/components/login/home.html',
                 controller: 'LoginController',
                 controllerAs: 'loginCtrl'
             })
             .state('main', {
                 url: '/main',
-                templateUrl: 'partials/main.html',
+                templateUrl: '../app/components/main/main.html',
                 controller: 'MainCtrl',
                 controllerAs: 'mainCtrl'
             })
             .state('register', {
                 url: '/register',
-                templateUrl: 'partials/register.html'
+                templateUrl: '../app/components/register/register.html'
             })
             .state('profile', {
                 url: '/profile/:userId',
-                templateUrl: 'partials/profile.html',
+                templateUrl: '../app/components/profile/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'profileCtrl'
             });

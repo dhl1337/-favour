@@ -3,12 +3,16 @@
  */
 (function () {
     angular
-        .module('app')
+        .module('favourApp')
         .controller('ProfileController', ['MainSvc','$stateParams',ProfileController]);
 
     function ProfileController (MainSvc, $stateParams) {
         var vm = this;
         var currentUserId = $stateParams.userId;
         vm.user = MainSvc.getUser(currentUserId);
+
+        $('.ui.rating')
+            .rating('disable')
+        ;
     }
 })();

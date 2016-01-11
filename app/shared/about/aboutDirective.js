@@ -3,12 +3,12 @@
  */
 (function () {
     angular
-        .module('app')
+        .module('favourApp')
         .directive('about', about);
 
     function about () {
         var directive = {
-            templateUrl: '../app/view/about.html',
+            templateUrl: '../app/shared/about/aboutView.html',
             controller: aboutController,
             bindToController: true
         };

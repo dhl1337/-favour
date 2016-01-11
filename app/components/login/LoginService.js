@@ -4,7 +4,7 @@
 (function () {
     'use strict';
     angular
-        .module('app')
+        .module('favourApp')
         .service('LoginService', ['$firebaseAuth', '$location', '$window', 'fb', LoginService]);
 
     function LoginService ($firebaseAuth, $location, $window, fb) {

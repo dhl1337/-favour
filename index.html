@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="favourApp">
 <head>
     <meta charset="UTF-8">
     <title>Give a hand</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.7/themes/basic/assets/fonts/icons.woff">
     <link rel="stylesheet" href="assets/css/semantic.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
@@ -31,19 +29,25 @@
 
 
 <script src="assets/js/jQuery.js"></script>
-<script src="app/app.js"></script>
+
+<!--<script src="app/app.js"></script>-->
+<script src="app/app.module.js"></script>
+<script src="app/app.constants.js"></script>
+<script src="app/app.routes.js"></script>
+
+
+
 <!-- Controllers -->
-<script src="app/login/LoginController.js"></script>
-<script src="app/controllers/MainController.js"></script>
-<script src="app/controllers/ProfileController.js"></script>
+<script src="app/components/login/LoginController.js"></script>
+<script src="app/components/main/MainController.js"></script>
+<script src="app/components/profile/ProfileController.js"></script>
 <!-- Services -->
-<script src="app/login/LoginService.js"></script>
-<script src="app/services/MainService.js"></script>
+<script src="app/components/login/LoginService.js"></script>
+<script src="app/components/main/MainService.js"></script>
 <!-- Directives -->
-<script src="app/directives/navDirective.js"></script>
-<script src="app/directives/aboutDirective.js"></script>
-<!-- Filter -->
-<script src="app/filter/filters.js"></script>
+<script src="app/shared/navbar/navDirective.js"></script>
+<script src="app/shared/about/aboutDirective.js"></script>
+
 
 </body>
 </html>

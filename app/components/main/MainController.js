@@ -4,7 +4,7 @@
 (function () {
     'use strict';
     angular
-        .module('app')
+        .module('favourApp')
         .controller('MainCtrl',['MainSvc', '$stateParams', MainCtrl]);
 
     function MainCtrl (MainSvc) {
@@ -73,8 +73,6 @@
             }
         }
 
-
-
         function dropDownEdit () {
             $('.ui.right.pointing.dropdown')
                 .dropdown()
@@ -109,15 +107,6 @@
 
 
 
-        $('.ui .item').on('click', function() {
-            $('.ui .item').removeClass('active');
-            $(this).addClass('active');
-        });
-
-
-        $('.ui.rating')
-            .rating('disable')
-        ;
 
     }
 })();

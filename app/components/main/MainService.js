@@ -4,7 +4,7 @@
 (function () {
     'use strict';
     angular
-        .module('app')
+        .module('favourApp')
         .service('MainSvc', ['$firebaseObject', '$firebaseArray', 'fb', MainSvc]);
 
     function MainSvc ($firebaseObject, $firebaseArray, fb) {
@@ -68,12 +68,6 @@
             var favArr = $firebaseArray(ref);
             favArr.$add(newfavor);
         };
-
-        //this.deleteFavor = function (id) {
-        //    var ref = new Firebase(fb.url+'/favor');
-        //    var favArr = $firebaseArray(ref);
-        //    favArr.$remove(id);
-        //};
 
     }
 })();
