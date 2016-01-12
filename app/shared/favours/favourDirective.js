@@ -29,7 +29,6 @@
 
             vm.favs = MainService.addFavoriteFavors();
 
-            console.log(vm.favours.favorited);
             function addFavoriteFvr (favor) {
                 if (!favor.favorited) {
                     favor.favorited = true;

@@ -38,13 +38,13 @@
                     <div class="text">today</div>
                     <i class="dropdown icon"></i>
                     <div class="menu" tabindex="-1">
-                        <div class="item active" data-text="all the favours" ng-click="myFavor={}">Favour</div>
+                        <div class="item active" data-text="all the favours" ng-click="myFavor={favorited: undefined}">Favour</div>
                         <div class="item" data-text="my favours" ng-click="myFavor={name: main.currUser.name}">My Favour</div>
-                        <div class="item" data-text="my favorite favours" ng-click="myFavorites={favorites: main.currUser.favorites}">Favorite Favour</div>
+                        <div class="item" data-text="my favorite favours" ng-click="myFavorite={favorited: true}">Favorite Favour</div>
                         <div class="item" data-text="top favours">Top Favour</div>
                     </div>
                 </div>
-                <div class="newsFeed" ng-repeat="favor in main.favors | filter:myFavor | orderBy:'-date'"> 
+                <div class="newsFeed" ng-repeat="favor in main.favors | orderBy:'-date' | filter:myFavorite | filter:myFavor"> 
                     <favour favours="favor" curr-user="main.currUser"></favour>
                 </div> 
             </div>
