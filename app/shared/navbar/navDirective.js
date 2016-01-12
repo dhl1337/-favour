@@ -23,9 +23,6 @@
         vm.logout = logout;
         vm.currentUser = MainService.currentUser();
 
-
-
-        //console.log(vm.userId);
         function logout () {
             loginService.logout();
         };

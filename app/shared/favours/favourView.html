@@ -25,12 +25,12 @@
                 <div class="ui right pointing dropdown" ng-if="favourCtrl.currUser.uid == favourCtrl.favours.uid" ng-click="favourCtrl.dropDownEdit()">
                     <i class="edit icon"></i>
                     <div class="menu">
-                        <div class="item" id="deleteFavour"  ng-click="favourCtrl.favors.$remove(favours)">
+                        <div class="item" id="deleteFavour"  ng-click="favourCtrl.deleteModal()" >
                             <i class="remove icon"></i>
                             Delete
                         </div>
                         <div class="item">
-                            <i class="edit icon" id="editFavour"></i>
+                            <i class="edit icon" id="editFavour" ng-click="favourCtrl.editFavour(favours)"></i>
                             Edit
                         </div>
                     </div>
@@ -41,22 +41,19 @@
             </span>
         </div>
     </div>
-    <div class="ui modal" id="comment">
-        <div class="header">Message</div>
+    
+    <div class="ui modal" id="deletePost">
+        <div class="header">Delete Your Favour</div>
         <div class="content">
             <form class="ui form">
                 <div class="field">
-                    <label>Title</label>
-                    <input type="text" ng-model="previewFavor" required>
-                </div>
-                <div class="field">
-                    <label>Favor</label>
-                    <textarea ng-model="previewText" required></textarea>
+                    <p>Are you sure you want to delete your favour</p>
                 </div>
             </form>
         </div>
         <div class="actions">
-            <div class="ui button">Preview</div>
+            <div class="ui negative button"><i class="fa fa-times"> Cancel</i></div>
+            <div class="ui positive button" ng-click="favourCtrl.a.$remove(favours)"><i class="fa fa-check"> Yes</i></div>
         </div>
     </div>
 </div>

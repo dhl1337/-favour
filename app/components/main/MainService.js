@@ -56,7 +56,6 @@
         };
 
 
-
         this.addFavoriteFavors = function () {
             var ref = new Firebase(fb.url+'/favorites/'+currentUser.uid);
             var favsArr = $firebaseArray(ref);
@@ -67,6 +66,12 @@
             var ref = new Firebase(fb.url+'/favor');
             var favArr = $firebaseArray(ref);
             favArr.$add(newfavor);
+        };
+
+        this.editFavor = function () {
+            var ref = new Firebase(fb.url+'/favor/'+currentFavorId);
+            var favsObj = $firebaseObject(ref);
+            favsObj.$save();
         };
 
     }

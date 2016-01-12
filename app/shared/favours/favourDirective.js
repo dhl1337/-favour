@@ -11,7 +11,8 @@
             templateUrl: '../app/shared/favours/favourView.html',
             scope: {
                 favours: '=',
-                currUser: '='
+                currUser: '=',
+                a: '='
             },
             controller: favourController,
             controllerAs: 'favourCtrl'
@@ -23,11 +24,19 @@
 
             vm.dropDownEdit = dropDownEdit;
             vm.addFavoriteFvr = addFavoriteFvr;
+            vm.editFavor = editFavor;
+            vm.deleteModal = deleteModal;
 
             vm.currUser = $scope.currUser;
             vm.favours = $scope.favours;
+            vm.a = $scope.a;
 
             vm.favs = MainService.addFavoriteFavors();
+
+
+            function editFavor (id) {
+                console.log(id);
+            }
 
             function addFavoriteFvr (favor) {
                 if (!favor.favorited) {
@@ -44,6 +53,11 @@
                 }
             }
 
+            function deleteModal () {
+                $('#deletePost')
+                    .modal('show')
+                ;
+            }
 
             function dropDownEdit () {
                 $('.ui.right.pointing.dropdown')

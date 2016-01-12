@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="newsFeed" ng-repeat="favor in main.favors | orderBy:'-date' | filter:myFavorite | filter:myFavor"> 
-                    <favour favours="favor" curr-user="main.currUser"></favour>
+                    <favour favours="favor" curr-user="main.currUser" a="main.favors"></favour>
                 </div> 
             </div>
 
