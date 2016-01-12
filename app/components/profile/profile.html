@@ -1,140 +1,46 @@
 <!-- NAVIGATION -->
 <nav-bar></nav-bar>
+
 <!-- MAIN CONTENT -->
-<div class="fakebackground">
+<div class ="fakebackground">
     <div class="ui container" id="container">
         <div class="ui grid">
             <div class="four wide column">
-                <div class="proile">
+                <div class="profile side">
+                    <profile curr-user="profile.user"></profile>
                     <div class="ui card">
-                        <div class="image">
-                            <img ng-src="{{profileCtrl.user.image}}">
-                        </div>
                         <div class="content">
-                            <div class="header">
-                                {{profileCtrl.user.name}}
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <div class="ui three mini statistics" id="statistics">
-                                <div class="statistic">
-                                    <div class="label">FAVORS</div>
-                                    <div class="value">3</div>
-                                </div>
-                                <div class="statistic">
-                                    <div class="label">FOLLOW</div>
-                                    <div class="value">324</div>
-                                </div>
-                                <div class="statistic">
-                                    <div class="label">FOLLOWERS</div>
-                                    <div class="value">22</div>
-                                </div>
+                            <review-modal></review-modal> 
+                            <div id="addUser" style="font-size: 20px;" ng-click="review.addReview()"> 
+                                <i class="add user icon"></i> Follow 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="eight wide column" ng-controller="MainController as main">
-                <div class="favours feed" ng-repeat="favor in main.favors | filter: profileCtrl.user.name | orderBy:'-date'">
-                    <div class="ui centered card" id="newCard">
-                        <div class="content">
-                            <img class="ui avatar image" ng-src="{{favor.image}}"> <a ui-sref="profile({userId:favor.uid})">{{favor.name}}</a>
-                            <div class="right floated meta">{{favor.date|date:'short'}}</div>
-                        </div>
-                        <div class="content">
-                            <div class="header">{{favor.favorTitle}}</div>
-                            <div class="meta">
-                                <span class="category">{{favor.favor}}</span>
-                            </div>
-                            <div class="description">
-                                <p>{{favor.favorContent}}</p>
-                            </div>
-                        </div>
-                        <div class="extra content">
-                            <div class="actions">
-                                <span class="left floated like">
-                                    <i class="mail outline icon" id="messageFavour"></i>
-                                    <div class="ui rating" data-max-rating="1" ng-hide="favor.isStar">
-                                        <i class="star icon"ng-class = "{active:favor.favorited}" id="favoriteFavour" ng-click="main.addFavoriteFvr(favor)"></i>
-                                    </div>
-                                </span>
-                                <span class="right floated">
-                                    <div class="ui right pointing dropdown" ng-if="main.currUser.uid == favor.uid" ng-click="main.dropDownEdit()">
-                                        <i class="edit icon"></i>
-                                        <div class="menu">
-                                            <div class="item" id="deleteFavour"  ng-click="main.favors.$remove(favor)">
-                                                <i class="remove icon"></i>
-                                                Delete
-                                            </div>
-                                            <div class="item">
-                                                <i class="edit icon" id="editFavour"></i>
-                                                Edit
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item" ng-if="main.currUser.uid !== favor.uid">
-                                        <i class="hide icon"></i>
-
-                                    </div>
-
-                                </span>
-                            </div>
-                        </div>
-                        <div class="ui modal" id="comment">
-                            <div class="header">Message</div>
-                            <div class="content">
-                                <form class="ui form">
-                                    <div class="field">
-                                        <label>Title</label>
-                                        <input type="text" ng-model="previewFavor" required>
-                                    </div>
-                                    <div class="field">
-                                        <label>Favor</label>
-                                        <textarea ng-model="previewText" required></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="actions">
-                                <div class="ui button">Preview</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="newsFeed" ng-repeat="favor in main.favors | filter:myFavor | filter: profile.user.name | orderBy:'-date'"> 
+                    <favour favours="favor" curr-user="main.currUser"></favour>
+                </div> 
             </div>
+
             <div class="four wide column">
                 <div class="ui card">
                     <div class="content">
-                        <div class="header">Feedback ratings</div>
-                        <div class="ui list">
-                            <div class="item">
-                                <div class="ui star rating" data-rating="3"></div>
-                                <label>Communication</label>
-                            </div>
-                            <div class="item">
-                                <div class="ui star rating" data-rating="3"></div>
-                                <label>Communication</label>
-                            </div>
-                            <div class="item">
-                                <div class="ui star rating" data-rating="3"></div>
-                                <label>Communication</label>
-                            </div>
+                        <div class="header">
+                            Overall Favouree Rating 
                         </div>
+                        <br>
+                        <div class="item"> 
+                            <div class="ui huge star rating" data-rating="3" data-max-rating="5"></div> 
+                            <span style="font-size: 20px">Service </span>
+                        </div> 
                     </div>
-            </div>
+                </div>
 
-            <div class="ui card">
-                <div class="content">
-                    <div class="header">Experience</div>
-                    <div class="ui list">
-                        <div class="item">
-                            <i class="smile icon" style="font-size: 40px"></i>
-                        </div>
-                        <div class="item">
-                            <i class="meh icon" style="font-size: 40px"></i>
-                        </div>
-                        <div class="item">
-                            <i class="frown icon" style="font-size: 40px"></i>
-                        </div>
+                <div class="about">
+                    <about></about>
                 </div>
             </div>
 

@@ -29,7 +29,7 @@
                 url: '/profile/:userId',
                 templateUrl: '../app/components/profile/profile.html',
                 controller: 'ProfileController',
-                controllerAs: 'profileCtrl'
+                controllerAs: 'profile'
             });
         $urlRouterProvider.otherwise('/home');
     }

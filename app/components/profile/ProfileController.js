@@ -9,10 +9,12 @@
     function ProfileController (MainService, $stateParams) {
         var vm = this;
         var currentUserId = $stateParams.userId;
+
         vm.user = MainService.getUser(currentUserId);
 
         $('.ui.rating')
             .rating('disable')
         ;
+
     }
 })();

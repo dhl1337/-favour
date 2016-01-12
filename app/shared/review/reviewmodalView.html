@@ -1,0 +1,97 @@
+<div id="pencilIcon" style="font-size: 20px" ng-click="review.addReview()">
+    <i class="write icon"></i> Write a review
+</div>
+
+<div class="ui modal" id="favorQuest">
+    <i class="close icon"></i>
+    <div class="header">My Review</div>
+    <div class="content">
+        <form class="ui form">
+            <div class="field">
+                <label>Overall Rating</label>
+                <div class="ui massive star rating" id="reviewStar" data-rating="5" ng-model="rating"></div>
+            </div>
+            <div class="field">
+                <label>Review Summary</label>
+                <input type="text" ng-model="reviewTitle">
+                <div class="meta">
+                    <span class="example">Example: Excellent communication</span>
+                </div>
+            </div>
+            <div class="field">
+                <label>My Review</label>
+                <textarea ng-model="reviewText"></textarea>
+            </div>
+            <div class="field">
+                <div class="ui form">
+                    <div class="inline fields">
+                        <label>I would recommend this to a friend</label>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="recommend" checked="checked" ng-model="checkboxModel" value="yes">
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="recommend" ng-model="checkboxModel" value="no">
+                                <label>No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="actions">
+        <div class="ui button">Preview</div>
+    </div>
+</div>
+
+<div class="ui small basic modal" id="preview">
+    <div class="header">Preview</div>
+    <div class="content">
+        <div class="ui center card" id="previewModal">
+            <div class="content">
+                <img class="ui avatar image" ng-src="{{main.currUser.image}}"> <a href="">{{main.currUser.name}}</a>
+                <div class="right floated meta">14h</div>
+            </div>
+            <div class="content">
+                <div class="header">{{previewFavor}}</div>
+                <div class="description">
+                    <p>{{previewText}}</p>
+                </div>
+            </div>
+            <div class="extra content">
+                <div class="actions">
+                    <span class="left floated">
+                        <i class="mail outline icon"></i>
+                        <div class="ui rating" data-max-rating="1">
+                            <i class="empty star icon"></i>
+                        </div>
+                    </span>
+                    <span class="right floated">
+                        <div class="ui right pointing dropdown">
+                            <i class="edit icon"></i>
+                            <div class="menu">
+                                <div class="item">
+                                    <i class="remove icon"></i>Delete
+                                </div>
+                                <div class="item">
+                                    <i class="edit icon"></i>Edit
+                                </div>
+                                <div class="item">
+                                    <i class="hide icon"></i>Hide
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui negative button"><i class="fa fa-times"> Cancel</i></div>
+        <div class="ui positive button" ng-click="main.addFavor(previewFavor, previewText)"><i class="fa fa-check"> Post</i></div>
+    </div>
+</div>

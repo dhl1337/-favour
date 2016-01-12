@@ -1,119 +1,16 @@
 <!-- NAVIGATION -->
 <nav-bar></nav-bar>
 
-
 <!-- MAIN CONTENT -->
 <div class ="fakebackground">
     <div class="ui container" id="container">
         <div class="ui grid">
-
             <div class="four wide column">
                 <div class="profile side">
-                    <div class="profile">
-                        <div class="user-profile">
-                            <div class="ui card">
-                                <div class="image">
-                                    <img ng-src="{{main.currUser.image}}">
-                                </div>
-                                <div class="content">
-                                    <a class="header">{{main.currUser.name}}</a>
-                                </div>
-                                <div class="extra content">
-                                    <div class="ui three mini statistics" id="statistics">
-                                        <div class="statistic">
-                                            <div class="label">FAVORS</div>
-                                            <div class="value">{{main.favors.length}}</div>
-                                        </div>
-                                        <div class="statistic">
-                                            <div class="label">FOLLOW</div>
-                                            <div class="value">324</div>
-                                        </div>
-                                        <div class="statistic">
-                                            <div class="label">FOLLOWERS</div>
-                                            <div class="value">22</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <profile curr-user="main.currUser"></profile>
                     <div class="ui card">
                         <div class="content">
-                            <div id="pencilIcon" style="font-size: 20px" ng-click="main.postModal()">
-                                <i class="write icon"></i> Post a favour
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="ui modal" id="favorQuest">
-                        <div class="header">Whats the favour?!</div>
-                        <div class="content">
-                            <form class="ui form">
-                                <div class="field">
-                                    <label>Title</label>
-                                    <input type="text" ng-model="previewFavor" required>
-                                </div>
-                                <div class="field">
-                                    <label>Favor</label>
-                                    <textarea ng-model="previewText" required></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="actions">
-                            <div class="ui button">Preview</div>
-                        </div>
-                    </div>
-
-                    <div class="ui small basic modal" id="preview">
-                        <div class="header">Preview</div>
-                        <div class="content">
-                            <div class="ui center card" id="previewModal">
-                                <div class="content">
-                                    <img class="ui avatar image" ng-src="{{main.currUser.image}}"> <a href="">{{main.currUser.name}}</a>
-                                    <div class="right floated meta">14h</div>
-                                </div>
-                                <div class="content">
-                                    <div class="header">{{previewFavor}}</div>
-                                    <div class="description">
-                                        <p>{{previewText}}</p>
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    <div class="actions">
-                                    <span class="left floated like">
-                                    <i class="mail outline icon"></i>
-                                    <div class="ui rating" data-max-rating="1">
-                                        <i class="empty star icon"></i>
-                                    </div>
-                                </span>
-                                <span class="right floated star">
-                                    <div class="ui right pointing dropdown">
-                                        <i class="edit icon"></i>
-                                        <div class="menu">
-                                            <div class="item">
-                                                <i class="remove icon"></i>
-                                                Delete
-                                            </div>
-                                            <div class="item">
-                                                <i class="edit icon"></i>
-                                                Edit
-                                            </div>
-                                            <div class="item">
-                                                <i class="hide icon"></i>
-                                                Hide
-                                            </div>
-                                        </div>
-                                    </div>
-                                </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <div class="ui negative button"><i class="fa fa-times"> Cancel</i></div>
-                            <div class="ui positive button" ng-click="main.addFavor(previewFavor, previewText)"><i class="fa fa-check"> Post</i></div>
+                            <post-favour current-user="main.currUser"></post-favour>
                         </div>
                     </div>
 
@@ -132,7 +29,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -141,7 +37,7 @@
                 <div class="ui inline dropdown" tabindex="0" style="color: orange" ng-click="main.dropDownFilter()">
                     <div class="text">today</div>
                     <i class="dropdown icon"></i>
-                    <div class="menu" tabindex="-1" ">
+                    <div class="menu" tabindex="-1">
                         <div class="item active" data-text="all the favours" ng-click="myFavor={}">Favour</div>
                         <div class="item" data-text="my favours" ng-click="myFavor={name: main.currUser.name}">My Favour</div>
                         <div class="item" data-text="my favorite favours" ng-click="myFavorites={favorites: main.currUser.favorites}">Favorite Favour</div>
@@ -149,69 +45,7 @@
                     </div>
                 </div>
                 <div class="newsFeed" ng-repeat="favor in main.favors | filter:myFavor | orderBy:'-date'"> 
-                    <div class="ui centered card" id="newCard">
-                    <div class="content">
-                        <img class="ui avatar image" ng-src="{{favor.image}}"> <a ui-sref="profile({userId:favor.uid})">{{favor.name}}</a>
-                        <div class="right floated meta">{{favor.date|date:'short'}}</div>
-                    </div>
-                    <div class="content">
-                        <div class="header">{{favor.favorTitle}}</div>
-                        <div class="meta">
-                            <span class="category">{{favor.favor}}</span>
-                        </div>
-                        <div class="description">
-                            <p>{{favor.favorContent}}</p>
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <div class="actions">
-                                <span class="left floated like">
-                                    <i class="mail outline icon" id="messageFavour"></i>
-                                    <div class="ui rating" data-max-rating="1" ng-hide="favor.isStar">
-                                        <i class="star icon"ng-class = "{active:favor.favorited}" id="favoriteFavour" ng-click="main.addFavoriteFvr(favor)"></i>
-                                    </div>
-                                </span>
-                                <span class="right floated">
-                                    <div class="ui right pointing dropdown" ng-if="main.currUser.uid == favor.uid" ng-click="main.dropDownEdit()">
-                                        <i class="edit icon"></i>
-                                        <div class="menu">
-                                            <div class="item" id="deleteFavour"  ng-click="main.favors.$remove(favor)">
-                                                <i class="remove icon"></i>
-                                                Delete
-                                            </div>
-                                            <div class="item">
-                                                <i class="edit icon" id="editFavour"></i>
-                                                Edit
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item" ng-if="main.currUser.uid !== favor.uid">
-                                        <i class="hide icon"></i>
-
-                                    </div>
-
-                                </span>
-                        </div>
-                    </div>
-                    <div class="ui modal" id="comment">
-                        <div class="header">Message</div>
-                        <div class="content">
-                            <form class="ui form">
-                                <div class="field">
-                                    <label>Title</label>
-                                    <input type="text" ng-model="previewFavor" required>
-                                </div>
-                                <div class="field">
-                                    <label>Favor</label>
-                                    <textarea ng-model="previewText" required></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="actions">
-                            <div class="ui button">Preview</div>
-                        </div>
-                    </div>
-                </div>
+                    <favour favours="favor" curr-user="main.currUser"></favour>
                 </div> 
             </div>
 
