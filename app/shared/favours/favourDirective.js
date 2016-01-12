@@ -24,8 +24,9 @@
 
             vm.dropDownEdit = dropDownEdit;
             vm.addFavoriteFvr = addFavoriteFvr;
-            vm.editFavor = editFavor;
+            vm.editFavour = editFavour;
             vm.deleteModal = deleteModal;
+            vm.update = update;
 
             vm.currUser = $scope.currUser;
             vm.favours = $scope.favours;
@@ -34,9 +35,6 @@
             vm.favs = MainService.addFavoriteFavors();
 
 
-            function editFavor (id) {
-                console.log(id);
-            }
 
             function addFavoriteFvr (favor) {
                 if (!favor.favorited) {
@@ -53,12 +51,29 @@
                 }
             }
 
+            function editFavour () {
+                var b = {
+                    image: vm.favours.image,
+                    name: vm.favours.name,
+                    date: vm.favours.date,
+                    favorTitle: vm.favours.favorTitle,
+                    favorContent: vm.favours.favorContent,
+                };
+                vm.b = b;
+
+                $('#editPost')
+                    .modal('show')
+                ;
+
+            }
+            function update () {
+                MainService.editFavor(vm.favours.$id, vm.b);
+            }
             function deleteModal () {
                 $('#deletePost')
                     .modal('show')
                 ;
             }
-
             function dropDownEdit () {
                 $('.ui.right.pointing.dropdown')
                     .dropdown()

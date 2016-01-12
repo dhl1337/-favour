@@ -68,10 +68,16 @@
             favArr.$add(newfavor);
         };
 
-        this.editFavor = function () {
-            var ref = new Firebase(fb.url+'/favor/'+currentFavorId);
-            var favsObj = $firebaseObject(ref);
-            favsObj.$save();
+        this.editFavor = function (id, updatedFavour) {
+            var ref = new Firebase(fb.url+'/favor/'+id);
+
+            ref.update({
+                image: updatedFavour.image,
+                name: updatedFavour.name,
+                date: updatedFavour.date,
+                favorTitle: updatedFavour.favorTitle,
+                favorContent: updatedFavour.favorContent
+            });
         };
 
     }

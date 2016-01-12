@@ -29,8 +29,8 @@
                             <i class="remove icon"></i>
                             Delete
                         </div>
-                        <div class="item">
-                            <i class="edit icon" id="editFavour" ng-click="favourCtrl.editFavour(favours)"></i>
+                        <div class="item" id="editFavour" ng-click="favourCtrl.editFavour(favours.$id)">
+                            <i class="edit icon"></i>
                             Edit
                         </div>
                     </div>
@@ -41,7 +41,7 @@
             </span>
         </div>
     </div>
-    
+
     <div class="ui modal" id="deletePost">
         <div class="header">Delete Your Favour</div>
         <div class="content">
@@ -54,6 +54,71 @@
         <div class="actions">
             <div class="ui negative button"><i class="fa fa-times"> Cancel</i></div>
             <div class="ui positive button" ng-click="favourCtrl.a.$remove(favours)"><i class="fa fa-check"> Yes</i></div>
+        </div>
+    </div>
+    <div class="ui modal" id="editPost">
+        <i class="close icon"></i>
+        <div class="header">Update Favour</div>
+        <div class="content">
+            <div class="ui center card">
+                <div class="content">
+                    <img class="ui avatar image" ng-src="{{favourCtrl.b.image}}"> <a ui-sref="profile({userId:favourCtrl.b.uid})">{{favourCtrl.b.name}}</a>
+                    <div class="right floated meta">
+                        {{favourCtrl.b.date|date:'short'}}
+                    </div>
+                </div>
+                <div class="content">
+                    <div class="header">
+                        {{favourCtrl.b.favorTitle}}
+                    </div>
+                    <div class="description">
+                        <p>{{favourCtrl.b.favorContent}}</p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div class="actions">
+                        <span class="left floated like">
+                            <i class="mail outline icon"></i>
+                            <div class="ui rating" data-max-rating="1">
+                                <i class="star icon" ng-class="{active:favourCtrl.favours.favorited}" ng-click="favourCtrl.addFavoriteFvr(favours)"></i>
+                            </div>
+                        </span>
+                        <span class="right floated">
+                            <div class="ui right pointing dropdown" ng-if="favourCtrl.currUser.uid == favourCtrl.favours.uid" ng-click="favourCtrl.dropDownEdit()">
+                                <i class="edit icon"></i>
+                                <div class="menu">
+                                    <div class="item"  ng-click="favourCtrl.deleteModal()" >
+                                        <i class="remove icon"></i>
+                                        Delete
+                                    </div>
+                                    <div class="item"  ng-click="favourCtrl.editFavour(favours.$id)">
+                                        <i class="edit icon"></i>
+                                        Edit
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" ng-if="favourCtrl.currUser.uid !== favourCtrl.favours.uid">
+                                <i class="hide icon"></i>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+        </div>
+        </div>
+        <div class="content">
+            <form class="ui form">
+                <div class="field">
+                    <label>Title</label>
+                    <input type="text" ng-model="favourCtrl.b.favorTitle">
+                </div>
+                <div class="field">
+                    <label>Favor</label>
+                    <textarea ng-model="favourCtrl.b.favorContent"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui positive button" ng-click="favourCtrl.update()">Update</div>
         </div>
     </div>
 </div>
