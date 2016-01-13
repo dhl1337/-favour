@@ -2,7 +2,7 @@
     <i class="write icon"></i> Write a review
 </div>
 
-<div class="ui modal" id="favorQuest">
+<div class="ui modal" id="reviewPost">
     <i class="close icon"></i>
     <div class="header">My Review</div>
     <div class="content">
@@ -48,7 +48,28 @@
     </div>
 </div>
 
-<div class="ui small basic modal" id="preview">
+<div class="ui small basic modal" id="reviewPreview">
+    <div class="ui center card">
+        <div class="content">
+            <div class="header">
+                Preview Review
+            </div>
+            <div class="content">
+                <div class="ui massive star rating" id="reviewStars" data-rating="{{rating}}"></div>
+                <p>{{reviewTitle}}</p>
+                <p>{{reviewText}}</p>
+                {{checkboxModel}}
+            </div>
+            <div class="extra content">
+                <div class="right floated author">
+                    <img class="ui avatar image" ng-src="{{review.currUser.image}}"> Matt
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui small basic modal">
     <div class="header">Preview</div>
     <div class="content">
         <div class="ui center card" id="previewModal">

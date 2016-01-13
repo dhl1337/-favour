@@ -17,15 +17,8 @@
                     <div class="ui card">
                         <div class="content">
                             <h3 class="friends-header">Friends</h3>
-                            <div class="friend-list" ng-repeat="friend in main.users">
-                                <div class="ui middle aligned selection list">
-                                    <div class="item" ui-sref="profile({userId:friend.$id})">
-                                        <img class="ui avatar image" ng-src="{{friend.image}}">
-                                        <div class="content">
-                                            <div class="header">{{friend.name}}</div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="friend-list" ng-repeat="friend in main.friends">
+                                <friends-list friend="friend"></friends-list>
                             </div>
                         </div>
                     </div>
@@ -38,9 +31,9 @@
                     <div class="text">today</div>
                     <i class="dropdown icon"></i>
                     <div class="menu" tabindex="-1">
-                        <div class="item active" data-text="all the favours" ng-click="myFavor={favorited: undefined}">Favour</div>
+                        <div class="item active" data-text="all the favours" ng-click="myFavor={}">Favour</div>
                         <div class="item" data-text="my favours" ng-click="myFavor={name: main.currUser.name}">My Favour</div>
-                        <div class="item" data-text="my favorite favours" ng-click="myFavorite={favorited: true}">Favorite Favour</div>
+                        <div class="item" data-text="my favorite favours" ng-click="myFavor={favorited: true}">Favorite Favour</div>
                         <div class="item" data-text="top favours">Top Favour</div>
                     </div>
                 </div>
@@ -57,7 +50,7 @@
                             <div class="ui middle aligned divided list" ng-repeat="follow in main.users">
                                 <div class="item">
                                     <div class="right floated content">
-                                        <div class="ui tiny button" style="background-color: #F6F6F6; color: black" >
+                                        <div class="ui tiny button" style="background-color: #F6F6F6; color: black" ng-click="main.pendingFriend(follow)">
                                             <i class="add user icon" style="color: orange"></i>Follow
                                         </div>
                                     </div>

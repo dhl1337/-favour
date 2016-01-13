@@ -17,6 +17,8 @@
             var vm = this;
             vm.addReview = addReview;
 
+
+
             vm.checkboxModel = {};
 
             function addReview () {
@@ -26,14 +28,14 @@
                     })
                 ;
                 // open second modal on first modal buttons
-                $('#preview')
-                    .modal('attach events', '#favorQuest .button')
+                $('#reviewPreview')
+                    .modal('attach events', '#reviewPost .button')
                 ;
                 // show first immediately
-                $('#favorQuest')
+                $('#reviewPost')
                     .modal('show')
                 ;
-                $('#preview .ui.negative.button').on('click', function(){
+                $('#reviewPreview .ui.negative.button').on('click', function(){
                     $('#preview')
                         .modal('show')
                     ;

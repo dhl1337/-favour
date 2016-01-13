@@ -30,7 +30,13 @@
                 templateUrl: '../app/components/profile/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'profile'
-            });
+            })
+            .state('notification', {
+                url: '/notification',
+                templateUrl: '../app/components/notification/notification.html',
+                controller: 'NotificationController',
+                controllerAs: 'notify'
+        });
         $urlRouterProvider.otherwise('/home');
     }
 })();

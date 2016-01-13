@@ -14,19 +14,25 @@
         vm.currentUser = currentUser;
         vm.dropDownFilter = dropDownFilter;
         vm.getFavours = getFavours;
-        //vm.addFavoriteFvr = addFavoriteFvr;
-
+        vm.pendingFriend = pendingFriend;
         vm.favs = MainService.addFavoriteFavors();
         vm.users = MainService.getUsers();
 
         currentUser();
         getFavours();
 
+        function pendingFriend (friend) {
+            MainService.pendingFriends(friend, vm.currUser);
+        };
+
+
+
+        vm.friends = MainService.getFriends(vm.currUser);
+
 
         function currentUser () {
             vm.currUser = MainService.currentUser();
         }
-
         function getFavours () {
             vm.favors = MainService.getFavors();
             vm.favors.$loaded(function(){
@@ -39,21 +45,6 @@
                 }
             })
         }
-
-        //function addFavoriteFvr (favor) {
-        //    if (!favor.favorited) {
-        //        favor.favorited = true;
-        //        vm.favs.$add(favor.$id);
-        //    } else {
-        //        favor.favorited = false;
-        //        for (var i=0;i<vm.favs.length;i++){
-        //            if (vm.favs[i].$value == favor.$id){
-        //                vm.favs.$remove(i);
-        //            }
-        //        }
-        //
-        //    }
-        //}
 
 
         function dropDownFilter () {
