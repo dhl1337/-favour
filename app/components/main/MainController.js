@@ -5,9 +5,9 @@
     'use strict';
     angular
         .module('favourApp')
-        .controller('MainController',['MainService', '$stateParams', MainController]);
+        .controller('MainController',['MainService', '$stateParams', 'notificationService', MainController]);
 
-    function MainController (MainService) {
+    function MainController (MainService, notificationService) {
 
         var vm = this;
 
@@ -22,10 +22,8 @@
         getFavours();
 
         function pendingFriend (friend) {
-            MainService.pendingFriends(friend, vm.currUser);
+            notificationService.pendingFriends(friend, vm.currUser);
         };
-
-
 
         vm.friends = MainService.getFriends(vm.currUser);
 
@@ -45,7 +43,6 @@
                 }
             })
         }
-
 
         function dropDownFilter () {
             $('.ui.dropdown')

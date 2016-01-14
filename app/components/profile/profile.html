@@ -21,7 +21,7 @@
 
             <div class="eight wide column" ng-controller="MainController as main">
                 <div class="newsFeed" ng-repeat="favor in main.favors | filter:myFavor | filter: profile.user.name | orderBy:'-date'"> 
-                    <favour favours="favor" curr-user="main.currUser"></favour>
+                    <favour favours="favor" curr-user="profile.currUser"></favour>
                 </div> 
             </div>
 

@@ -10,7 +10,7 @@
         var directive = {
             templateUrl: '../app/shared/profile/profileView.html',
             scope: {
-                currUser: '='
+                currUser: '=',
             },
             controller: profileController,
             controllerAs: 'profile'
@@ -19,6 +19,8 @@
         function profileController ($scope) {
             var vm = this;
             vm.currUser = $scope.currUser;
+            vm.favors = $scope.favors;
+            console.log(vm.favors);
         }
 
         return directive;

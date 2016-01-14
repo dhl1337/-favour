@@ -4,9 +4,9 @@
 (function () {
     angular
         .module('favourApp')
-        .controller('NotificationController', ['MainService', NotificationController]);
+        .controller('NotificationController', ['MainService', 'notificationService', NotificationController]);
 
-    function NotificationController (MainService) {
+    function NotificationController (MainService, notificationService) {
         var vm = this;
         vm.approve = approve;
         vm.currUser = MainService.currentUser();
@@ -15,14 +15,14 @@
 
         function approve(request) {
             //console.log(request);
-            MainService.approveFriend(request, vm.currUser);
+            notificationService.approveFriend(request, vm.currUser);
             //console.log(request, currUser.$id);
         }
 
-        vm.pendings = MainService.getPendingFriends(currUser.$id);
+        vm.pendings = notificationService.getPendingFriends(currUser.$id);
 
         vm.deletePending = function (id) {
-            MainService.deletePendingFriends(id, vm.currUser);
+            notificationService.deletePendingFriends(id, vm.currUser);
         }
     }
 })();
