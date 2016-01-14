@@ -36,7 +36,7 @@
                 templateUrl: '../app/components/notification/notification.html',
                 controller: 'NotificationController',
                 controllerAs: 'notify'
-        });
+            });
         $urlRouterProvider.otherwise('/home');
     }
 })();

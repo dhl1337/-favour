@@ -22,7 +22,8 @@
         getFavours();
 
         function pendingFriend (friend) {
-            notificationService.pendingFriends(friend, vm.currUser);
+            //console.log(friend);
+            MainService.pendingFriends(friend, vm.currUser);
         };
 
         vm.friends = MainService.getFriends(vm.currUser);
