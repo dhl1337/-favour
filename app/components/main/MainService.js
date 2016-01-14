@@ -87,18 +87,18 @@
         };
 
         this.approveFriend = function (friend, currUser) {
-            console.log(friend);
+            //console.log(friend);
             var ref = new Firebase(fb.url + '/users/' + currUser.$id+ '/friendList');
-            console.log(ref);
+            //console.log(ref);
             var confirmFriendArr = $firebaseArray(ref);
             confirmFriendArr.$add(friend);
         };
 
         this.getPendingFriends = function (currentId) {
-            //console.log('looking for: ', currentId);
+            console.log('looking for: ', currentId);
             var ref = new Firebase (fb.url +'/users/'+ currentId +'/pendingRequest');
             var pendingFriendsArr = $firebaseArray(ref);
-            //console.log('found: ', pendingFriendsArr);
+            console.log('found: ', pendingFriendsArr);
             return pendingFriendsArr;
         };
 
@@ -106,6 +106,12 @@
             var ref = new Firebase(fb.url + '/users/' + currentId.$id +'/friendList');
             var friendsArr = $firebaseArray(ref);
             return friendsArr;
+        };
+
+        this.deletePendingFriends = function (id, currUser) {
+            var ref = new Firebase(fb.url + '/users/' + currUser.$id + '/pendingRequest/' + id);
+            ref.remove();
+
         };
 
         //this.currentFriends = function (pendingFriend) {

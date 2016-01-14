@@ -14,11 +14,15 @@
         var currUser = MainService.currentUser();
 
         function approve(request) {
-            console.log(request);
+            //console.log(request);
             MainService.approveFriend(request, vm.currUser);
             //console.log(request, currUser.$id);
         }
 
         vm.pendings = MainService.getPendingFriends(currUser.$id);
+
+        vm.deletePending = function (id) {
+            MainService.deletePendingFriends(id, vm.currUser);
+        }
     }
 })();

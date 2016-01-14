@@ -6,7 +6,7 @@
 <div class ="fakebackground">
     <div class="ui container" id="container">
         <div class="ui cards" ng-repeat="pending in notify.pendings">
-            <div class="card" ng-show="!showDiv">
+            <div class="card">
                 <div class="content" >
                     <img class="right floated mini ui image" ng-src="{{pending.image}}">
                     <div class="header">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="extra content">
                     <div class="ui two buttons">
-                        <div class="ui basic green button" ng-click="notify.approve(pending); showDiv=true">Approve</div>
+                        <div class="ui basic green button" ng-click="notify.approve(pending); notify.deletePending(pending.$id)">Approve</div>
                         <div class="ui basic red button">Decline</div>
                     </div>
                 </div>
