@@ -19,7 +19,7 @@
                 <div class="extra content">
                     <div class="ui two buttons">
                         <div class="ui basic green button" ng-click="notify.approve(pending); notify.deletePending(pending.$id)">Approve</div>
-                        <div class="ui basic red button">Decline</div>
+                        <div class="ui basic red button" ng-click="notify.deletePending(pending.$id)">Decline</div>
                     </div>
                 </div>
             </div>

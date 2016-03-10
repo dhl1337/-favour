@@ -21,7 +21,7 @@
             vm.addFavor = addFavor;
             vm.postModal = postModal;
             vm.currUser = $scope.currUser;
-
+            console.log(vm.currUser);
             function addFavor (favorTitle, favorContent) {
                 var favor = {
                     uid: vm.currUser.uid,

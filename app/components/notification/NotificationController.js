@@ -22,6 +22,7 @@
         vm.pendings = notificationService.getPendingFriends(currUser.$id);
 
         vm.deletePending = function (id) {
+            //console.log(id);
             notificationService.deletePendingFriends(id, vm.currUser);
         }
     }

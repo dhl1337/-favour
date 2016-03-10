@@ -16,7 +16,7 @@
 
                     <div class="ui card">
                         <div class="content">
-                            <h3 class="friends-header">Friends</h3>
+                            <h3 class="friends-header">Followers</h3>
                             <div class="friend-list" ng-repeat="friend in main.friends">
                                 <friends-list friend="friend"></friends-list>
                             </div>
@@ -34,7 +34,7 @@
                         <div class="item active" data-text="all the favours" ng-click="myFavor={}">Favour</div>
                         <div class="item" data-text="my favours" ng-click="myFavor={name: main.currUser.name}">My Favour</div>
                         <div class="item" data-text="my favorite favours" ng-click="myFavor={favorited: true}">Favorite Favour</div>
-                        <div class="item" data-text="top favours">Top Favour</div>
+                        <!--<div class="item" data-text="top favours">Top Favour</div>-->
                     </div>
                 </div>
                 <div class="newsFeed" ng-repeat="favor in main.favors | orderBy:'-date' | filter:myFavorite | filter:myFavor"> 
