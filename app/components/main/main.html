@@ -1,76 +1,86 @@
 <!-- NAVIGATION -->
 <nav-bar></nav-bar>
-
-<!-- MAIN CONTENT -->
-<div class ="fakebackground">
-    <div class="ui container" id="container">
-        <div class="ui grid">
-            <div class="four wide column">
-                <div class="profile side">
-                    <profile curr-user="main.currUser" favors="main.favors"></profile>
-                    <div class="ui card">
-                        <div class="content">
-                            <post-favour current-user="main.currUser"></post-favour>
-                        </div>
-                    </div>
-
-                    <div class="ui card">
-                        <div class="content">
-                            <h3 class="friends-header">Friends</h3>
-                            <div class="friend-list" ng-repeat="friend in main.friends">
-                                <friends-list friend="friend"></friends-list>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="seven wide column">
-                <label>Show me</label>
-                <div class="ui inline dropdown" tabindex="0" style="color: orange" ng-click="main.dropDownFilter()">
-                    <div class="text">today</div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu" tabindex="-1">
-                        <div class="item active" data-text="all the favours" ng-click="myFavor={}">Favour</div>
-                        <div class="item" data-text="my favours" ng-click="myFavor={name: main.currUser.name}">My Favour</div>
-                        <div class="item" data-text="my favorite favours" ng-click="myFavor={favorited: true}">Favorite Favour</div>
-                        <div class="item" data-text="top favours">Top Favour</div>
-                    </div>
-                </div>
-                <div class="newsFeed" ng-repeat="favor in main.favors | orderBy:'-date' | filter:myFavorite | filter:myFavor"> 
-                    <favour favours="favor" curr-user="main.currUser" a="main.favors"></favour>
-                </div> 
-            </div>
-
-            <div class="five wide column">
-                <div class="follow">
-                    <div class="ui card">
-                        <div class="content">
-                            <div class="header">Who to favour</div>
-                            <div class="ui middle aligned divided list" ng-repeat="follow in main.users">
-                                <div class="item">
-                                    <div class="right floated content">
-                                        <div class="ui tiny button" style="background-color: #F6F6F6; color: black" ng-click="main.pendingFriend(follow)">
-                                            <i class="add user icon" style="color: orange"></i>Follow
-                                        </div>
-                                    </div>
-                                    <img class="ui avatar image" ng-src="{{follow.image}}">
-                                    <div class="content">
-                                        <div class="content">
-                                            <a ui-sref="profile({userId:follow.$id})">{{follow.name}}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="about">
-                    <about></about>
-                </div>
-            </div>
-
+<div class="home-container">
+    <div class="ui container">
+        <div class="ui basic segment" ng-repeat="favor in main.favors | orderBy:'-date' | filter:myFavorite | filter:myFavor">
+            <favour favours="favor" curr-user="main.currUser" a="main.favors"></favour>
         </div>
+
+        <!--&lt;!&ndash; MAIN CONTENT &ndash;&gt;-->
+        <!--<div class ="fakebackground">-->
+        <!--<div class="ui container" id="container">-->
+        <!--<div class="ui grid">-->
+        <!--<div class="four wide column">-->
+        <!--<div class="profile side">-->
+        <!--<profile curr-user="main.currUser" favors="main.favors"></profile>-->
+        <!--<div class="ui card">-->
+        <!--<div class="content">-->
+        <!--<post-favour current-user="main.currUser"></post-favour>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="ui card">-->
+        <!--<div class="content">-->
+        <!--<h3 class="friends-header">Friends</h3>-->
+        <!--<div class="friend-list" ng-repeat="friend in main.friends">-->
+        <!--<friends-list friend="friend"></friends-list>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="seven wide column">-->
+        <!--<label>Show me</label>-->
+        <!--<div class="ui inline dropdown" tabindex="0" style="color: orange" ng-click="main.dropDownFilter()">-->
+        <!--<div class="text">today</div>-->
+        <!--<i class="dropdown icon"></i>-->
+        <!--<div class="menu" tabindex="-1">-->
+        <!--<div class="item active" data-text="all the favours" ng-click="myFavor={}">Favour</div>-->
+        <!--<div class="item" data-text="my favours" ng-click="myFavor={name: main.currUser.name}">My Favour</div>-->
+        <!--<div class="item" data-text="my favorite favours" ng-click="myFavor={favorited: true}">Favorite Favour</div>-->
+        <!--<div class="item" data-text="top favours">Top Favour</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="newsFeed" ng-repeat="favor in main.favors | orderBy:'-date' | filter:myFavorite | filter:myFavor"> -->
+        <!--<favour favours="favor" curr-user="main.currUser" a="main.favors"></favour>-->
+        <!--</div> -->
+        <!--</div>-->
+
+        <!--<div class="five wide column">-->
+        <!--<div class="follow">-->
+        <!--<div class="ui card">-->
+        <!--<div class="content">-->
+        <!--<div class="header">Who to favour</div>-->
+        <!--<div class="ui middle aligned divided list" ng-repeat="follow in main.users">-->
+        <!--<div class="item">-->
+        <!--<div class="right floated content">-->
+        <!--<div class="ui tiny button" style="background-color: #F6F6F6; color: black" ng-click="main.pendingFriend(follow)">-->
+        <!--<i class="add user icon" style="color: orange"></i>Follow-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<img class="ui avatar image" ng-src="{{follow.image}}">-->
+        <!--<div class="content">-->
+        <!--<div class="content">-->
+        <!--<a ui-sref="profile({userId:follow.$id})">{{follow.name}}</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<br>-->
+        <!--<div class="about">-->
+        <!--<about></about>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
     </div>
 </div>
+
+
+

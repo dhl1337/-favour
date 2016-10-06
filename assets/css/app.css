@@ -1,3 +1,6 @@
+.home-container {
+    background-color: #F6F6F6;
+}
 
 #page1 {
     background: url("https://images.unsplash.com/photo-1417551047620-471daaad5a65?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=e778f279618432c687b18697b11a398f") no-repeat center center fixed;
@@ -69,11 +72,21 @@ strong {
 
 #navMenu {
     background-color: white;
-    padding: 10px;
 }
+
+.ui.secondary.pointing.menu {
+    border-bottom: none;
+}
+
+.ui.menu:not(.vertical) .right.menu {
+    margin-bottom: 10px;
+}
+
 #navMenu .item.active {
-    border-bottom: 3px solid black;
+    font-weight: 500;
     background-color: transparent;
+    color: orange;
+    border-bottom: 2px solid orange;
 }
 #homeIcon, #profileIcon, #navMessageIcon, #logoutIcon, #pencilIcon, #messageIcon, #addUser {
     color: orange;
@@ -82,7 +95,7 @@ strong {
     margin-top: 80px;
 }
 #newCard {
-    width: 100%;
+    width: 500px;
 }
 #statistics .statistic>.label{
     text-align: left;
@@ -154,4 +167,7 @@ strong {
     color: red;
 }
 
+#newsFeed {
+    width: 600px;
+}
 
