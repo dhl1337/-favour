@@ -1,66 +1,57 @@
-(function () {
-    'use strict';
+(() => {
     angular
         .module('favourApp')
         .service('MainService', ['$firebaseObject', '$firebaseArray', 'fb', MainService]);
 
     function MainService ($firebaseObject, $firebaseArray, fb) {
-        var currentUser = null;
-        var ref = new Firebase(fb.url);
-        ref.onAuth(function (user) {
-            if(user) {
-                currentUser = user;
-            } else {
-                console.log('user got blank');
-            }
-        });
+        let currentUser = null;
+        let ref = new Firebase(fb.url);
+        ref.onAuth(user => user ? currentUser = user : console.log('user got blank'));
 
         //getting current user info
-        this.currentUser = function () {
+        this.currentUser = () => {
             if(currentUser) {
-                //console.log('Got User: ',  currentUser);
-                var ref = new Firebase(fb.url+'/users/'+currentUser.uid);
+                const ref = new Firebase(fb.url+'/users/'+currentUser.uid);
                 return $firebaseObject(ref);
             } else {
-                console.log('No Current User');
                 return null;
             }
         };
 
         //getting the users
-        this.getUsers = function () {
-            var ref = new Firebase(fb.url+'/users/');
-            var usersArr = $firebaseArray(ref);
+        this.getUsers = () => {
+            const ref = new Firebase(fb.url+'/users/');
+            const usersArr = $firebaseArray(ref);
             return usersArr;
         };
 
-        this.getUser = function (userId) {
-            var ref = new Firebase (fb.url + '/users/' + userId);
+        this.getUser = userId => {
+            const ref = new Firebase (fb.url + '/users/' + userId);
             return $firebaseObject(ref);
         };
 
 
-        this.getFavors = function() {
-            var ref = new Firebase(fb.url+'/favor/');
-            var favorArr = $firebaseArray(ref);
+        this.getFavors = () => {
+            const ref = new Firebase(fb.url+'/favor/');
+            const favorArr = $firebaseArray(ref);
             return favorArr;
         };
 
 
-        this.addFavoriteFavors = function () {
-            var ref = new Firebase(fb.url+'/favorites/'+currentUser.uid);
-            var favsArr = $firebaseArray(ref);
+        this.addFavoriteFavors = () => {
+            const ref = new Firebase(fb.url+'/favorites/'+currentUser.uid);
+            const favsArr = $firebaseArray(ref);
             return favsArr;
         };
 
-        this.addFavor = function (newfavor) {
-            var ref = new Firebase(fb.url+'/favor');
-            var favArr = $firebaseArray(ref);
+        this.addFavor = newfavor => {
+            const ref = new Firebase(fb.url+'/favor');
+            const favArr = $firebaseArray(ref);
             favArr.$add(newfavor);
         };
 
-        this.editFavor = function (id, updatedFavour) {
-            var ref = new Firebase(fb.url+'/favor/'+id);
+        this.editFavor = (id, updatedFavour) => {
+            const ref = new Firebase(fb.url+'/favor/'+id);
 
             ref.update({
                 image: updatedFavour.image,
@@ -70,39 +61,5 @@
                 favorContent: updatedFavour.favorContent
             });
         };
-
-        this.getFriends = function (currentId) {
-            var ref = new Firebase(fb.url + '/users/' + currentId.$id +'/friendList');
-            var friendsArr = $firebaseArray(ref);
-            return friendsArr;
-        };
-        //
-        //this.getPendingFriends = function (currentId) {
-        //    console.log('looking for: ', currentId);
-        //    var ref = new Firebase (fb.url +'/users/'+ currentId +'/pendingRequest');
-        //    var pendingFriendsArr = $firebaseArray(ref);
-        //    console.log('found: ', pendingFriendsArr);
-        //    return pendingFriendsArr;
-        //};
-        //
-        this.pendingFriends = function (friend, currUser) {
-            var ref = new Firebase(fb.url + '/users/' + friend.$id + '/pendingRequest');
-            var newFriendArr = $firebaseArray(ref);
-            newFriendArr.$add(currUser);
-        };
-        //
-        //this.approveFriend = function (friend, currUser) {
-        //    //console.log(friend);
-        //    var ref = new Firebase(fb.url + '/users/' + currUser.$id+ '/friendList');
-        //    //console.log(ref);
-        //    var confirmFriendArr = $firebaseArray(ref);
-        //    confirmFriendArr.$add(friend);
-        //};
-        //
-        //
-        //this.deletePendingFriends = function (id, currUser) {
-        //    var ref = new Firebase(fb.url + '/users/' + currUser.$id + '/pendingRequest/' + id);
-        //    ref.remove();
-        //};
     }
 })();
