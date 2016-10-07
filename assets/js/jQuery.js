@@ -16,10 +16,17 @@ $(document).ready(function(){
             this.previousTop = currentTop;
         });
 
+    $('.content > #favourFilter > .item').on('click', function() {
+        $('#favourFilter > .item').removeClass('active');
+        $(this).addClass('active');
+    });
+
     $('.ui .item').on('click', function() {
         $('.ui .item').removeClass('active');
         $(this).addClass('active');
     });
+
+
 
 
     $('.ui.rating')

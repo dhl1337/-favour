@@ -26,6 +26,7 @@ body, html {
 #page2 {
     background-color: white;
     height: 400px;
+    padding-top: 40px;
 }
 #iconQuest, #iconHand, #iconUsers, #iconComments {
     color: orange;

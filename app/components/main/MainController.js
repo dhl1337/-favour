@@ -65,5 +65,11 @@
                 .dropdown()
             ;
         }
+
+        $('#favourFilter .item').on('click', function() {
+            $('#favourFilter .item').removeClass('active');
+            $(this).addClass('active');
+        });
+
     }
 })();

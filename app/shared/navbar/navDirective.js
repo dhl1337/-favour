@@ -22,7 +22,7 @@
 
         function logout () {
             loginService.logout();
-        };
+        }
 
     }
 })();
