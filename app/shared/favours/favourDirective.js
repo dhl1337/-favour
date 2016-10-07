@@ -1,7 +1,4 @@
-/**
- * Created by danle on 1/11/16.
- */
-(function () {
+(() => {
     angular
         .module('favourApp')
         .directive('favour', favour);
@@ -20,13 +17,7 @@
 
         function favourController ($scope, MainService) {
 
-            var vm = this;
-
-            vm.dropDownEdit = dropDownEdit;
-            vm.addFavoriteFvr = addFavoriteFvr;
-            vm.editFavour = editFavour;
-            vm.deleteModal = deleteModal;
-            vm.update = update;
+            const vm = this;
 
             vm.currUser = $scope.currUser;
             vm.favours = $scope.favours;
@@ -34,24 +25,22 @@
 
             vm.favs = MainService.addFavoriteFavors();
 
-
-
-            function addFavoriteFvr (favor) {
+            vm.addFavoriteFvr = favor => {
                 if (!favor.favorited) {
                     favor.favorited = true;
                     vm.favs.$add(favor.$id);
                 } else {
                     favor.favorited = false;
-                    for (var i=0;i<vm.favs.length;i++){
+                    for (let i=0; i < vm.favs.length; i++){
                         if (vm.favs[i].$value == favor.$id){
                             vm.favs.$remove(i);
                         }
                     }
 
                 }
-            }
+            };
 
-            function editFavour () {
+            vm.editFavour = () => {
                 var b = {
                     image: vm.favours.image,
                     name: vm.favours.name,
@@ -61,24 +50,15 @@
                 };
                 vm.b = b;
 
-                $('#editPost')
-                    .modal('show')
-                ;
+                $('#editPost').modal('show');
+            };
 
-            }
-            function update () {
-                MainService.editFavor(vm.favours.$id, vm.b);
-            }
-            function deleteModal () {
-                $('#deletePost')
-                    .modal('show')
-                ;
-            }
-            function dropDownEdit () {
-                $('.ui.right.pointing.dropdown')
-                    .dropdown()
-                ;
-            }
+            vm.update = () => MainService.editFavor(vm.favours.$id, vm.b);
+
+            vm.deleteModal = () => $('#deletePost').modal('show');
+
+            vm.dropDownEdit = () => $('.ui.right.pointing.dropdown').dropdown();
+
         }
         return directive;
     }

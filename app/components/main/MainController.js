@@ -10,7 +10,6 @@
         vm.favs = MainService.addFavoriteFavors();
         vm.users = MainService.getUsers();
         vm.currUser = MainService.currentUser();
-        vm.friends = MainService.getFriends(vm.currUser);
 
         vm.favors = MainService.getFavors();
         vm.favors.$loaded(function(){

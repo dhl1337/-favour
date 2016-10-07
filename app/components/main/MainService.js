@@ -6,11 +6,12 @@
     function MainService ($firebaseObject, $firebaseArray, fb) {
         let currentUser = null;
         let ref = new Firebase(fb.url);
+
         ref.onAuth(user => user ? currentUser = user : console.log('user got blank'));
 
         //getting current user info
         this.currentUser = () => {
-            if(currentUser) {
+            if (currentUser) {
                 const ref = new Firebase(fb.url+'/users/'+currentUser.uid);
                 return $firebaseObject(ref);
             } else {
