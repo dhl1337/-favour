@@ -1,19 +1,12 @@
-/**
- * Created by danle on 1/11/16.
- */
-(function () {
-    'use strict';
+(() => {
     angular
         .module('favourApp')
         .controller('loginController', ['loginService', loginController]);
 
     function loginController (loginService) {
-        var vm = this;
+        const vm = this;
 
-        vm.login = login;
+        vm.login = () => loginService.loginWithFacebook();
 
-        function login () {
-            loginService.loginWithFacebook();
-        }
     }
 })();

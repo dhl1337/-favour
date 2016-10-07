@@ -1,29 +1,30 @@
-/**
- * Created by danle on 1/5/16.
- */
-(function () {
-    'use strict';
+(() => {
     angular
         .module('favourApp')
-        .controller('MainController',['MainService', '$stateParams', 'notificationService', MainController]);
+        .controller('MainController',['MainService', '$stateParams', MainController]);
 
-    function MainController (MainService, notificationService) {
+    function MainController (MainService) {
 
-        var vm = this;
+        const vm = this;
 
-        vm.currentUser = currentUser;
-        vm.dropDownFilter = dropDownFilter;
-        vm.getFavours = getFavours;
-        vm.pendingFriend = pendingFriend;
-        vm.addFavor = addFavor;
         vm.favs = MainService.addFavoriteFavors();
         vm.users = MainService.getUsers();
+        vm.currUser = MainService.currentUser();
+        vm.friends = MainService.getFriends(vm.currUser);
 
-        currentUser();
-        getFavours();
+        vm.favors = MainService.getFavors();
+        vm.favors.$loaded(function(){
+            for (var i = 0; i < vm.favors.length; i++) {
+                for (var j=0;j<vm.favs.length;j++) {
+                    if (vm.favs[j].$value == vm.favors[i].$id) {
+                        vm.favors[i].favorited = true;
+                    }
+                }
+            }
+        });
 
-        function addFavor () {
-            var favor = {
+        vm.addFavor = () => {
+            const favor = {
                 uid: vm.currUser.uid,
                 name: vm.currUser.name,
                 image: vm.currUser.image,
@@ -34,37 +35,9 @@
             MainService.addFavor(favor);
             vm.favourTitle = "";
             vm.favourDescription = "";
-        }
-
-        function pendingFriend (friend) {
-            //console.log(friend);
-            MainService.pendingFriends(friend, vm.currUser);
         };
 
-        vm.friends = MainService.getFriends(vm.currUser);
-
-
-        function currentUser () {
-            vm.currUser = MainService.currentUser();
-        }
-        function getFavours () {
-            vm.favors = MainService.getFavors();
-            vm.favors.$loaded(function(){
-                for (var i = 0; i < vm.favors.length; i++) {
-                    for (var j=0;j<vm.favs.length;j++) {
-                        if (vm.favs[j].$value == vm.favors[i].$id) {
-                            vm.favors[i].favorited = true;
-                        }
-                    }
-                }
-            })
-        }
-
-        function dropDownFilter () {
-            $('.ui.dropdown')
-                .dropdown()
-            ;
-        }
+        $('.ui.dropdown').dropdown();
 
         $('#favourFilter .item').on('click', function() {
             $('#favourFilter .item').removeClass('active');

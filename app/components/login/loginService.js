@@ -1,36 +1,30 @@
-/**
- * Created by danle on 1/9/16.
- */
-(function () {
-    'use strict';
+(() => {
     angular
         .module('favourApp')
         .service('loginService', ['$firebaseAuth', '$location', '$window', 'fb', loginService]);
 
     function loginService ($firebaseAuth, $location, $window, fb) {
 
-        //login with facebook
-        this.loginWithFacebook = function () {
-            var ref = new Firebase (fb.url);
-            var authObj = $firebaseAuth(ref);
+        this.loginWithFacebook = () => {
+            const ref = new Firebase (fb.url);
+            const authObj = $firebaseAuth(ref);
 
             authObj.$authWithOAuthPopup("facebook")
-                .then(function(authData) {
-                    ref.child('users').child(authData.uid).update({
-                        uid: authData.uid,
-                        name: authData.facebook.displayName,
-                        image: authData.facebook.profileImageURL
+                .then(({uid, facebook} = authData) => {
+                    ref.child('users').child(uid).update({
+                        uid: uid,
+                        name: facebook.displayName,
+                        image: facebook.profileImageURL
                     });
                     $window.location.href="/#/main";
                 })
-                .catch(function(error) {
+                .catch(error => {
                     console.error("Authentication failed:", error);
                 });
         };
 
-        //logout the user
-        this.logout = function () {
-            var ref = new Firebase (fb.url);
+        this.logout = () => {
+            const ref = new Firebase (fb.url);
             ref.unauth();
             $location.path('/home');
         };
