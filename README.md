@@ -5,6 +5,7 @@ Favour is a web application that allows people to post favors or offer services 
 * Semantic UI
 * Angular.js
 * Firebase
+* ES2015
 
 ## Known Issues
 * User is not getting notifications when someone has followed them.
