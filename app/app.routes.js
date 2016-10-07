@@ -1,8 +1,4 @@
-/**
- * Created by danle on 1/11/16.
- */
-(function () {
-    'use strict';
+(() => {
     angular
         .module('favourApp')
         .config(['$stateProvider','$urlRouterProvider',config]);
@@ -26,7 +22,7 @@
                 templateUrl: '../app/components/profile/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'profile'
-            })
+            });
         $urlRouterProvider.otherwise('/home');
     }
 })();

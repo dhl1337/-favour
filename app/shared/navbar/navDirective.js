@@ -1,5 +1,4 @@
-(function () {
-    'use strict';
+(() => {
     angular
         .module('favourApp')
         .directive('navBar', navBar);
@@ -15,14 +14,12 @@
     }
 
     function NavController (loginService, MainService) {
-        var vm = this;
+        const vm = this;
 
         vm.logout = logout;
         vm.currentUser = MainService.currentUser();
 
-        function logout () {
-            loginService.logout();
-        }
+        vm.logout = () => loginService.logout()
 
     }
 })();
