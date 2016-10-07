@@ -15,11 +15,26 @@
         vm.dropDownFilter = dropDownFilter;
         vm.getFavours = getFavours;
         vm.pendingFriend = pendingFriend;
+        vm.addFavor = addFavor;
         vm.favs = MainService.addFavoriteFavors();
         vm.users = MainService.getUsers();
 
         currentUser();
         getFavours();
+
+        function addFavor () {
+            var favor = {
+                uid: vm.currUser.uid,
+                name: vm.currUser.name,
+                image: vm.currUser.image,
+                favorTitle: vm.favourTitle,
+                favorContent: vm.favourDescription,
+                date: Firebase.ServerValue.TIMESTAMP
+            };
+            MainService.addFavor(favor);
+            vm.favourTitle = "";
+            vm.favourDescription = "";
+        }
 
         function pendingFriend (friend) {
             //console.log(friend);

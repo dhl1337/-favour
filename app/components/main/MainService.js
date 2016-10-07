@@ -8,13 +8,10 @@
         .service('MainService', ['$firebaseObject', '$firebaseArray', 'fb', MainService]);
 
     function MainService ($firebaseObject, $firebaseArray, fb) {
-
-
         var currentUser = null;
         var ref = new Firebase(fb.url);
         ref.onAuth(function (user) {
             if(user) {
-                //console.log('hello');
                 currentUser = user;
             } else {
                 console.log('user got blank');

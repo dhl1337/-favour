@@ -1,6 +1,3 @@
-/**
- * Created by danle on 1/9/16.
- */
 (function () {
     'use strict';
     angular

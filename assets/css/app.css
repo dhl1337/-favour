@@ -1,3 +1,7 @@
+body, html {
+    background-color: #F6F6F6;
+}
+
 .home-container {
     background-color: #F6F6F6;
 }
@@ -74,9 +78,6 @@ strong {
     background-color: white;
 }
 
-.ui.secondary.pointing.menu {
-    border-bottom: none;
-}
 
 .ui.menu:not(.vertical) .right.menu {
     margin-bottom: 10px;
@@ -94,9 +95,15 @@ strong {
 #container {
     margin-top: 80px;
 }
-#newCard {
-    width: 500px;
+#newCard,
+#postFavour {
+    width: 600px;
 }
+
+#postFavour {
+    margin-top: 30px;
+}
+
 #statistics .statistic>.label{
     text-align: left;
     font-weight: normal;
@@ -171,3 +178,11 @@ strong {
     width: 600px;
 }
 
+#userProfile {
+    margin-top: 40px;
+    width: 300px;
+}
+
+.ui.cards > .card, .ui.card {
+    box-shadow: none;
+}

@@ -1,13 +1,15 @@
-<div class="ui secondary container pointing menu" id="navMenu">
-    <div class="header item">
-        <h1>
-            <i class="diamond icon"></i><strong> FAVOUR</strong>
-        </h1>
-    </div>
-    <div class="right menu">
-        <a class="item active" ui-sref="main" ui-sref-active="active">Home</a>
-        <a class="item" ui-sref="profile({userId: navCtrl.currentUser.$id})" ui-sref-active="active">Profile</a>
-        <a class="item" ui-sref="notification" ui-sref-active="active">Notifications</a>
-        <a class="item" ng-click="navCtrl.logout()">Logout</a>
+<div class="ui secondary fluid pointing menu" id="navMenu">
+    <div class="ui container">
+        <div class="header item">
+            <h1>
+                <i class="diamond icon"></i><strong> FAVOUR</strong>
+            </h1>
+        </div>
+        <div class="right menu">
+            <a class="item active" ui-sref="main" ui-sref-active="active">Home</a>
+            <a class="item" ui-sref="profile({userId: navCtrl.currentUser.$id})" ui-sref-active="active">Profile</a>
+            <a class="item" ui-sref="notification" ui-sref-active="active">Notifications</a>
+            <a class="item" ng-click="navCtrl.logout()">Logout</a>
+        </div>
     </div>
 </div>

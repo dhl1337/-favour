@@ -12,6 +12,8 @@
 
         vm.user = MainService.getUser(currentUserId);
 
+        console.log(vm.user);
+
         $('.ui.rating')
             .rating('disable')
         ;

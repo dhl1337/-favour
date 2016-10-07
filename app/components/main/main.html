@@ -2,6 +2,38 @@
 <nav-bar></nav-bar>
 <div class="home-container">
     <div class="ui container">
+        <div class="ui centered card" id="postFavour">
+            <div class="content">
+                <form class="ui form">
+                    <div class="field">
+                        <label>Title</label>
+                        <input type="text" ng-model="main.favourTitle">
+                    </div>
+                    <div class="field">
+                        <label>Favor</label>
+                        <textarea rows="2" ng-model="main.favourDescription"></textarea>
+                    </div>
+                    <div class="ui right floated orange button" ng-click="main.addFavor(previewFavor, previewText)">Post</div>
+                </form>
+            </div>
+        </div>
+
+        <div class="ui centered fluid card" style="width: 600px; background-color: transparent; border: none">
+            <div class="content">
+                <div class="ui secondary pointing menu">
+                    <a class="active item" ng-click="myFavor={}">
+                        All Favour
+                    </a>
+                    <a class="item" ng-click="myFavor={name: main.currUser.name}">
+                        My Favour
+                    </a>
+                    <a class="item" ng-click="myFavor={favorited: true}">
+                        Favorite Favour
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <div class="ui basic segment" ng-repeat="favor in main.favors | orderBy:'-date' | filter:myFavorite | filter:myFavor">
             <favour favours="favor" curr-user="main.currUser" a="main.favors"></favour>
         </div>
